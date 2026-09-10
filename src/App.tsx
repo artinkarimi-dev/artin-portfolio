@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -37,6 +37,7 @@ export default function App() {
       />
       <main>
         <Hero copy={copy} />
+        <FeaturedWork copy={copy} />
       </main>
     </div>
   );
@@ -81,9 +82,12 @@ function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
         </a>
 
         <div className="hidden items-center rounded-control border border-subtle bg-elevated/70 p-1 text-sm text-secondary md:flex">
-          <span className="rounded-[0.65rem] px-3 py-2 text-primary">
+          <a
+            href="#featured-work"
+            className="inline-flex min-h-10 items-center rounded-[0.65rem] px-3 text-primary outline-none transition hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/70"
+          >
             {copy.nav.work}
-          </span>
+          </a>
           <span className="px-3 py-2">{copy.nav.thinking}</span>
         </div>
 
@@ -182,7 +186,7 @@ function Hero({ copy }: { copy: SiteCopy }) {
                 {copy.hero.primaryCta}
               </a>
               <a
-                href="#first-proof"
+                href="#featured-work"
                 className="inline-flex min-h-12 items-center justify-center rounded-control border border-subtle bg-elevated px-5 text-sm font-semibold text-primary outline-none transition hover:-translate-y-0.5 hover:border-accent/45 focus-visible:ring-2 focus-visible:ring-accent/70"
               >
                 {copy.hero.secondaryCta}
@@ -229,6 +233,188 @@ function Hero({ copy }: { copy: SiteCopy }) {
             </div>
           </div>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedWork({ copy }: { copy: SiteCopy }) {
+  const shouldReduceMotion = useReducedMotion();
+  const detailId = useId();
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 130, damping: 28, mass: 0.35 });
+  const springY = useSpring(pointerY, { stiffness: 130, damping: 28, mass: 0.35 });
+  const rotateY = useTransform(springX, [-1, 1], [-5, 5]);
+  const rotateX = useTransform(springY, [-1, 1], [4, -4]);
+
+  function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
+    if (shouldReduceMotion) {
+      return;
+    }
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+
+    pointerX.set((x - 0.5) * 2);
+    pointerY.set((y - 0.5) * 2);
+  }
+
+  function resetPointer() {
+    pointerX.set(0);
+    pointerY.set(0);
+  }
+
+  return (
+    <section
+      id="featured-work"
+      className="featured-work relative isolate px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+      aria-labelledby="featured-work-title"
+    >
+      <div className="work-connector" aria-hidden="true" />
+      <div className="mx-auto w-full max-w-7xl">
+        <motion.div
+          className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-12% 0px" }}
+          transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="max-w-3xl text-start">
+            <p className="mb-3 text-sm font-semibold text-accent">
+              {copy.featuredWork.sectionLabel}
+            </p>
+            <h2
+              id="featured-work-title"
+              className="text-balance text-[clamp(2rem,4vw,4.2rem)] font-semibold leading-tight tracking-normal text-primary"
+            >
+              {copy.featuredWork.title}
+            </h2>
+          </div>
+          <div className="inline-flex w-fit items-center rounded-full border border-accent/35 bg-accent/12 px-4 py-2 text-sm font-semibold text-accent">
+            {copy.featuredWork.resultValue}
+          </div>
+        </motion.div>
+
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.72fr)] lg:items-stretch">
+          <motion.article
+            className="work-showcase"
+            onPointerMove={handlePointerMove}
+            onPointerLeave={resetPointer}
+            onFocus={() => setIsDetailOpen(true)}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            aria-label={copy.featuredWork.mediaLabel}
+          >
+            <motion.div
+              className="work-media"
+              style={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      rotateX,
+                      rotateY,
+                    }
+              }
+            >
+              <div className="work-window-bar">
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="work-rank-surface">
+                <span>{copy.featuredWork.resultLabel}</span>
+                <strong>{copy.featuredWork.resultValue}</strong>
+              </div>
+              <div className="work-flow-map" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="work-placeholder">
+                <span>{copy.featuredWork.mediaPlaceholder}</span>
+                <p>{copy.featuredWork.mediaNote}</p>
+              </div>
+            </motion.div>
+          </motion.article>
+
+          <motion.aside
+            className="work-detail"
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="text-sm font-semibold text-accent">
+              {copy.featuredWork.eyebrow}
+            </p>
+            <p className="mt-4 text-lg leading-8 text-secondary">
+              {copy.featuredWork.summary}
+            </p>
+
+            <dl className="mt-7 grid gap-3">
+              <div>
+                <dt>{copy.featuredWork.roleLabel}</dt>
+                <dd>{copy.featuredWork.roleValue}</dd>
+              </div>
+              <div>
+                <dt>{copy.featuredWork.scopeLabel}</dt>
+                <dd>{copy.featuredWork.scopeValue}</dd>
+              </div>
+            </dl>
+
+            <div className="mt-7">
+              <h3>{copy.featuredWork.systemTitle}</h3>
+              <ul className="mt-3 grid gap-2">
+                {copy.featuredWork.systemItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-7">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-muted">
+                {copy.featuredWork.stackLabel}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {copy.featuredWork.stack.map((technology) => (
+                  <span key={technology} className="work-stack-pill">
+                    {technology}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-control border border-subtle bg-elevated px-5 text-sm font-semibold text-primary outline-none transition hover:-translate-y-0.5 hover:border-accent/45 focus-visible:ring-2 focus-visible:ring-accent/70 sm:w-auto"
+              aria-expanded={isDetailOpen}
+              aria-controls={detailId}
+              onClick={() => setIsDetailOpen((current) => !current)}
+            >
+              {copy.featuredWork.actionLabel}
+            </button>
+            <motion.p
+              id={detailId}
+              className="mt-3 text-sm leading-6 text-muted"
+              initial={false}
+              animate={{
+                opacity: isDetailOpen ? 1 : 0.72,
+                y: shouldReduceMotion || isDetailOpen ? 0 : -2,
+              }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {isDetailOpen
+                ? copy.featuredWork.activeDetail
+                : copy.featuredWork.actionDetail}
+            </motion.p>
+          </motion.aside>
+        </div>
       </div>
     </section>
   );

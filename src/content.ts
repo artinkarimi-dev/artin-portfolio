@@ -31,6 +31,28 @@ export type SiteCopy = {
     proofThree: string;
     photoLabel: string;
   };
+  featuredWork: {
+    sectionLabel: string;
+    eyebrow: string;
+    title: string;
+    summary: string;
+    resultLabel: string;
+    resultValue: string;
+    roleLabel: string;
+    roleValue: string;
+    scopeLabel: string;
+    scopeValue: string;
+    mediaLabel: string;
+    mediaPlaceholder: string;
+    mediaNote: string;
+    systemTitle: string;
+    systemItems: string[];
+    stackLabel: string;
+    stack: string[];
+    actionLabel: string;
+    actionDetail: string;
+    activeDetail: string;
+  };
 };
 
 export const siteCopy: Record<Language, SiteCopy> = {
@@ -66,6 +88,35 @@ export const siteCopy: Record<Language, SiteCopy> = {
       proofThree: "Reduced motion respected",
       photoLabel: "Personal photo placeholder",
     },
+    featuredWork: {
+      sectionLabel: "Featured work",
+      eyebrow: "Real project proof",
+      title: "Innoverse made competition flow manageable.",
+      summary:
+        "A competition platform built for ViaX Code Arena to manage participants, teams, problems, submissions, judging, and live leaderboard behavior.",
+      resultLabel: "Competition result",
+      resultValue: "Silver Medal",
+      roleLabel: "Contribution",
+      roleValue: "Team member and project presenter",
+      scopeLabel: "Product scope",
+      scopeValue: "Administration, anti-cheat thinking, submission processing, and AI-assisted judging feedback.",
+      mediaLabel: "Innoverse media frame",
+      mediaPlaceholder: "Screenshot-ready product frame",
+      mediaNote: "Real Innoverse visuals can drop into this frame later.",
+      systemTitle: "What the platform handled",
+      systemItems: [
+        "Participants and teams",
+        "Problems and submissions",
+        "Judging and feedback",
+        "Leaderboard behavior",
+      ],
+      stackLabel: "Secondary technical context",
+      stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
+      actionLabel: "Preview project story",
+      actionDetail: "The full case study route is not connected yet.",
+      activeDetail:
+        "Future story space reserved: problem, role, team decisions, judging flow, and shipped result.",
+    },
   },
   fa: {
     meta: {
@@ -98,6 +149,35 @@ export const siteCopy: Record<Language, SiteCopy> = {
       proofTwo: "آماده LTR / RTL",
       proofThree: "هماهنگ با کاهش حرکت",
       photoLabel: "جایگاه عکس شخصی",
+    },
+    featuredWork: {
+      sectionLabel: "کار منتخب",
+      eyebrow: "نمونه‌ای از پروژه واقعی",
+      title: "Innoverse جریان مسابقه را قابل مدیریت کرد.",
+      summary:
+        "یک پلتفرم مسابقه برای ViaX Code Arena که برای مدیریت شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال‌ها، داوری و رفتار جدول رتبه‌بندی ساخته شد.",
+      resultLabel: "نتیجه مسابقه",
+      resultValue: "مدال نقره",
+      roleLabel: "نقش",
+      roleValue: "عضو تیم و ارائه‌دهنده پروژه",
+      scopeLabel: "گستره محصول",
+      scopeValue: "مدیریت، نگاه ضدتقلب، پردازش ارسال‌ها و بازخورد داوری با کمک هوش مصنوعی.",
+      mediaLabel: "قاب رسانه Innoverse",
+      mediaPlaceholder: "قاب آماده برای تصویر واقعی پروژه",
+      mediaNote: "بعدا تصویر واقعی Innoverse به همین قاب اضافه می‌شود.",
+      systemTitle: "پلتفرم چه چیزهایی را پوشش می‌داد",
+      systemItems: [
+        "شرکت‌کننده‌ها و تیم‌ها",
+        "مسئله‌ها و ارسال‌ها",
+        "داوری و بازخورد",
+        "رفتار جدول رتبه‌بندی",
+      ],
+      stackLabel: "زمینه فنی در لایه دوم",
+      stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
+      actionLabel: "پیش‌نمایش داستان پروژه",
+      actionDetail: "مسیر کیس‌استادی کامل هنوز وصل نشده است.",
+      activeDetail:
+        "فضای داستان آینده رزرو شد: مسئله، نقش، تصمیم‌های تیم، جریان داوری و نتیجه نهایی.",
     },
   },
 };
