@@ -53,6 +53,18 @@ export type SiteCopy = {
     stackLabel: string;
     stack: string[];
   };
+  howIWork: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    proofs: {
+      number: string;
+      context: string;
+      title: string;
+      evidence: string;
+      trace: string[];
+    }[];
+  };
 };
 
 export const siteCopy: Record<Language, SiteCopy> = {
@@ -134,6 +146,38 @@ export const siteCopy: Record<Language, SiteCopy> = {
       stackLabel: "Built with",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
     },
+    howIWork: {
+      eyebrow: "How I work",
+      title: "The screenshot is only the easy part.",
+      intro:
+        "The real work is everything around it: states, edge cases, production bugs, and the small decisions people actually feel.",
+      proofs: [
+        {
+          number: "01",
+          context: "Innoverse · team project",
+          title: "Real products have more than one good screen.",
+          evidence:
+            "Innoverse had to support participants, teams, problems, submissions, judging, rankings, administration, and AI-assisted feedback inside one competition flow.",
+          trace: ["Participants", "Submission", "Judging", "Ranking"],
+        },
+        {
+          number: "02",
+          context: "Jazireh · production debugging",
+          title: "Working API. Broken experience.",
+          evidence:
+            "On Jazireh, the backend returned 200 OK while the interface still showed unavailable. The issue was the response contract: WordPress wrapped the data differently from what the frontend expected.",
+          trace: ["200 OK", "UI unavailable", "response contract"],
+        },
+        {
+          number: "03",
+          context: "This portfolio · proof zero",
+          title: "The details still matter when conditions change.",
+          evidence:
+            "This site is being built around responsive layouts, English and Persian direction changes, keyboard states, reduced motion, and real project media; not added later as decoration.",
+          trace: ["390px", "RTL", "Keyboard", "Reduced motion"],
+        },
+      ],
+    },
   },
   fa: {
     meta: {
@@ -212,6 +256,38 @@ export const siteCopy: Record<Language, SiteCopy> = {
       ],
       stackLabel: "ساخته‌شده با",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
+    },
+    howIWork: {
+      eyebrow: "نحوه کار من",
+      title: "اسکرین‌شات، فقط بخش آسون ماجراست.",
+      intro:
+        "کار واقعی چیزهاییه که دورش اتفاق می‌افته: حالت‌ها، لبه‌های کار، باگ‌های پروداکشن و تصمیم‌های کوچیکی که کاربر واقعاً حسشون می‌کنه.",
+      proofs: [
+        {
+          number: "01",
+          context: "Innoverse · پروژه تیمی",
+          title: "محصول واقعی فقط یک صفحه خوشگل نیست.",
+          evidence:
+            "Innoverse باید شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال جواب‌ها، داوری، رتبه‌بندی، مدیریت و بازخورد مبتنی بر AI رو داخل یک جریان مسابقه پشتیبانی می‌کرد.",
+          trace: ["شرکت‌کننده‌ها", "ارسال جواب", "داوری", "رتبه‌بندی"],
+        },
+        {
+          number: "02",
+          context: "Jazireh · دیباگ پروداکشن",
+          title: "API سالم بود. تجربه کاربری نه.",
+          evidence:
+            "در Jazireh بک‌اند پاسخ 200 OK می‌داد، ولی رابط کاربری هنوز وضعیت unavailable نشون می‌داد. مشکل از قرارداد پاسخ بود؛ WordPress داده رو با ساختاری برمی‌گردوند که با چیزی که فرانت‌اند انتظار داشت فرق داشت.",
+          trace: ["200 OK", "UI unavailable", "قرارداد پاسخ"],
+        },
+        {
+          number: "03",
+          context: "همین سایت · اولین مدرک",
+          title: "جزئیات وقتی شرایط عوض میشه هم باید درست بمونن.",
+          evidence:
+            "همین سایت از اول با ریسپانسیو بودن، تغییر جهت انگلیسی و فارسی، حالت‌های کیبورد، Reduced Motion و تصاویر واقعی پروژه ساخته شده؛ نه اینکه آخر کار بهش اضافه بشن.",
+          trace: ["390px", "RTL", "کیبورد", "Reduced motion"],
+        },
+      ],
     },
   },
 };

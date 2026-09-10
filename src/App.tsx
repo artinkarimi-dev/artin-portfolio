@@ -52,7 +52,7 @@ export default function App() {
   }, [copy.meta.dir, copy.meta.lang, language]);
 
   return (
-    <div className="min-h-dvh overflow-x-hidden bg-portfolio text-primary antialiased">
+    <div className="min-h-dvh overflow-x-clip bg-portfolio text-primary antialiased">
       <SiteHeader
         copy={copy}
         language={language}
@@ -61,6 +61,7 @@ export default function App() {
       <main>
         <Hero copy={copy} />
         <FeaturedWork copy={copy} />
+        <HowIWork copy={copy} />
       </main>
     </div>
   );
@@ -111,7 +112,12 @@ function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
           >
             {copy.nav.work}
           </a>
-          <span className="px-3 py-2">{copy.nav.thinking}</span>
+          <a
+            href="#thinking"
+            className="inline-flex min-h-10 items-center rounded-[0.65rem] px-3 outline-none transition hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/70"
+          >
+            {copy.nav.thinking}
+          </a>
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
@@ -285,6 +291,34 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
     pointerY.set(0);
   }
 
+  function handleScreenSelectorClick(event: React.MouseEvent<HTMLDivElement>) {
+    const directButton = (event.target as Element).closest<HTMLButtonElement>(
+      "button[data-screen-index]",
+    );
+
+    if (directButton) {
+      setActiveScreenIndex(Number(directButton.dataset.screenIndex));
+      return;
+    }
+
+    const buttons = Array.from(
+      event.currentTarget.querySelectorAll<HTMLButtonElement>("button[data-screen-index]"),
+    );
+    const fallbackButton = buttons.find((button) => {
+      const rect = button.getBoundingClientRect();
+      return (
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom
+      );
+    });
+
+    if (fallbackButton) {
+      setActiveScreenIndex(Number(fallbackButton.dataset.screenIndex));
+    }
+  }
+
   return (
     <section
       id="featured-work"
@@ -360,23 +394,23 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
                 className="work-screen-selector"
                 role="tablist"
                 aria-labelledby={screenshotLabelId}
+                onClick={handleScreenSelectorClick}
               >
                 <p id={screenshotLabelId}>{copy.featuredWork.mediaPlaceholder}</p>
-                <div>
-                  {innoverseScreens.map((screen, index) => (
-                    <button
-                      key={screen.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={activeScreenIndex === index}
-                      aria-controls="innoverse-screen"
-                      className={activeScreenIndex === index ? "is-active" : ""}
-                      onClick={() => setActiveScreenIndex(index)}
-                    >
-                      {copy.featuredWork.screens[index].label}
-                    </button>
-                  ))}
-                </div>
+                {innoverseScreens.map((screen, index) => (
+                  <button
+                    key={screen.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeScreenIndex === index}
+                    aria-controls="innoverse-screen"
+                    data-screen-index={index}
+                    className={activeScreenIndex === index ? "is-active" : ""}
+                    onClick={() => setActiveScreenIndex(index)}
+                  >
+                    {copy.featuredWork.screens[index].label}
+                  </button>
+                ))}
               </div>
             </motion.div>
           </motion.article>
@@ -426,6 +460,71 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
               <p className="work-stack-line mt-2">{copy.featuredWork.stack.join(" / ")}</p>
             </div>
           </motion.aside>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowIWork({ copy }: { copy: SiteCopy }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <section
+      id="thinking"
+      className="thinking-section relative isolate px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+      aria-labelledby="thinking-title"
+    >
+      <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(18rem,0.48fr)_minmax(0,1fr)] lg:gap-16">
+        <motion.div
+          className="thinking-intro text-start"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-12% 0px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="text-sm font-semibold text-accent">{copy.howIWork.eyebrow}</p>
+          <h2
+            id="thinking-title"
+            className="mt-4 max-w-2xl text-balance text-[clamp(2.15rem,4.4vw,4.6rem)] font-semibold leading-[1.02] tracking-normal text-primary"
+          >
+            {copy.howIWork.title}
+          </h2>
+          <p className="mt-5 max-w-xl text-pretty text-lg leading-8 text-secondary">
+            {copy.howIWork.intro}
+          </p>
+        </motion.div>
+
+        <div className="proof-ledger" aria-label={copy.howIWork.eyebrow}>
+          {copy.howIWork.proofs.map((proof, index) => (
+            <motion.article
+              key={proof.number}
+              className="proof-row"
+              tabIndex={0}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : index * 0.06,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <div className="proof-index" aria-hidden="true">
+                {proof.number}
+              </div>
+              <div className="proof-content">
+                <p className="proof-context">{proof.context}</p>
+                <h3>{proof.title}</h3>
+                <p>{proof.evidence}</p>
+                <ul className="proof-trace" aria-label={proof.context}>
+                  {proof.trace.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>
