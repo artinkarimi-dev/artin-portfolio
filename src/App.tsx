@@ -10,6 +10,7 @@ import innoverseLogin from "./assets/innoverse/innoverse1.png";
 import innoverseDashboard from "./assets/innoverse/innoverse2.png";
 import innoverseProblems from "./assets/innoverse/innoverse3.png";
 import innoverseLeaderboard from "./assets/innoverse/innoverse4.png";
+import { JazirehProductionStory } from "./components/JazirehProductionStory";
 import { siteCopy, type Language, type SiteCopy } from "./content";
 
 const languageStorageKey = "artin-portfolio-language";
@@ -62,6 +63,7 @@ export default function App() {
         <Hero copy={copy} />
         <FeaturedWork copy={copy} />
         <HowIWork copy={copy} />
+        <JazirehProductionStory copy={copy} />
       </main>
     </div>
   );

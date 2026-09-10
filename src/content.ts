@@ -65,6 +65,31 @@ export type SiteCopy = {
       trace: string[];
     }[];
   };
+  jazireh: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    mediaLabel: string;
+    mediaNote: string;
+    mediaAlt: string;
+    technicalLabel: string;
+    plainLabel: string;
+    stages: {
+      id: string;
+      label: string;
+      technical: string;
+      plain: string;
+      detail: string;
+    }[];
+    contract: {
+      expectedLabel: string;
+      receivedLabel: string;
+      expectedValue: string;
+      receivedValues: string[];
+    };
+    resolution: string;
+    contextLine: string;
+  };
 };
 
 export const siteCopy: Record<Language, SiteCopy> = {
@@ -178,6 +203,52 @@ export const siteCopy: Record<Language, SiteCopy> = {
         },
       ],
     },
+    jazireh: {
+      eyebrow: "Production reality",
+      title: "The API said 200 OK. The screen still said unavailable.",
+      intro:
+        "On Jazireh, the request succeeded, but the frontend and WordPress disagreed about the shape of the response.",
+      mediaLabel: "Jazireh product screen showing the sky status and unavailable state",
+      mediaNote: "Real Jazireh screen · sky status",
+      mediaAlt:
+        "Jazireh Astronomy homepage in Persian showing the sky status for Tehran with an unavailable weather value.",
+      technicalLabel: "Technical signal",
+      plainLabel: "Plain meaning",
+      stages: [
+        {
+          id: "symptom",
+          label: "Symptom",
+          technical: "GET -> 200 OK",
+          plain: "The request succeeded.",
+          detail: "The network looked healthy, but the interface could still fall back to unavailable.",
+        },
+        {
+          id: "cause",
+          label: "Cause",
+          technical: "expected data / received { success, data }",
+          plain: "The interface looked in the wrong place for the data.",
+          detail:
+            "WordPress REST wrapped the useful response differently from what the frontend expected.",
+        },
+        {
+          id: "fix",
+          label: "Fix",
+          technical: "normalize response handling",
+          plain: "Read the response correctly before the UI trusts it.",
+          detail:
+            "The request layer had to account for the WordPress shape instead of masking the issue visually.",
+        },
+      ],
+      contract: {
+        expectedLabel: "Expected",
+        receivedLabel: "Received",
+        expectedValue: "data",
+        receivedValues: ["success", "data"],
+      },
+      resolution:
+        "The fix was not another visual patch. The request layer had to understand the response correctly before the interface could trust it.",
+      contextLine: "Jazireh is an astronomy-related web project using frontend code, WordPress REST, and APIs.",
+    },
   },
   fa: {
     meta: {
@@ -288,6 +359,52 @@ export const siteCopy: Record<Language, SiteCopy> = {
           trace: ["390px", "RTL", "کیبورد", "Reduced motion"],
         },
       ],
+    },
+    jazireh: {
+      eyebrow: "واقعیت پروداکشن",
+      title: "API می‌گفت 200 OK. صفحه هنوز می‌گفت unavailable.",
+      intro:
+        "در Jazireh درخواست موفق بود، اما فرانت‌اند و WordPress ساختار پاسخ رو یکسان نمی‌دیدن.",
+      mediaLabel: "اسکرین واقعی Jazireh با وضعیت آسمان و مقدار ناموجود",
+      mediaNote: "اسکرین واقعی Jazireh · وضعیت آسمان",
+      mediaAlt:
+        "صفحه خانه Jazireh Astronomy به زبان فارسی که وضعیت آسمان تهران و مقدار ناموجود هوا را نشان می‌دهد.",
+      technicalLabel: "نشانه فنی",
+      plainLabel: "معنی ساده",
+      stages: [
+        {
+          id: "symptom",
+          label: "نشانه",
+          technical: "GET -> 200 OK",
+          plain: "درخواست موفق بود.",
+          detail: "شبکه ظاهراً سالم بود، اما رابط کاربری هنوز می‌توانست به حالت unavailable برود.",
+        },
+        {
+          id: "cause",
+          label: "علت",
+          technical: "expected data / received { success, data }",
+          plain: "رابط کاربری دنبال داده در جای اشتباه می‌گشت.",
+          detail:
+            "WordPress REST داده اصلی را داخل ساختاری برمی‌گرداند که با انتظار فرانت‌اند یکی نبود.",
+        },
+        {
+          id: "fix",
+          label: "راه‌حل",
+          technical: "normalize response handling",
+          plain: "قبل از اعتماد رابط کاربری، پاسخ باید درست خوانده می‌شد.",
+          detail:
+            "لایه درخواست باید ساختار پاسخ WordPress را در نظر می‌گرفت، نه اینکه مشکل با یک وصله ظاهری پنهان شود.",
+        },
+      ],
+      contract: {
+        expectedLabel: "انتظار",
+        receivedLabel: "دریافت",
+        expectedValue: "data",
+        receivedValues: ["success", "data"],
+      },
+      resolution:
+        "راه‌حل یک وصله ظاهری دیگه نبود؛ لایه درخواست باید پاسخ رو درست می‌فهمید تا رابط کاربری بتونه به داده اعتماد کنه.",
+      contextLine: "Jazireh یک پروژه وب مرتبط با نجوم است که با فرانت‌اند، WordPress REST و API درگیر بود.",
     },
   },
 };
