@@ -10,7 +10,8 @@ export type SiteCopy = {
     identity: string;
     role: string;
     work: string;
-    thinking: string;
+    approach: string;
+    about: string;
     contact: string;
     languageLabel: string;
   };
@@ -69,26 +70,25 @@ export type SiteCopy = {
     eyebrow: string;
     title: string;
     intro: string;
+    supporting: string;
     mediaLabel: string;
     mediaNote: string;
     mediaAlt: string;
-    technicalLabel: string;
-    plainLabel: string;
-    stages: {
-      id: string;
+    details: {
       label: string;
-      technical: string;
-      plain: string;
-      detail: string;
+      value: string;
     }[];
-    contract: {
-      expectedLabel: string;
-      receivedLabel: string;
-      expectedValue: string;
-      receivedValues: string[];
-    };
-    resolution: string;
-    contextLine: string;
+  };
+  about: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    secondaryBody: string;
+  };
+  contact: {
+    eyebrow: string;
+    title: string;
+    body: string;
   };
 };
 
@@ -103,39 +103,41 @@ export const siteCopy: Record<Language, SiteCopy> = {
       identity: "Artin Karimi",
       role: "Front-End Developer",
       work: "Work",
-      thinking: "Thinking",
+      approach: "Approach",
+      about: "About",
       contact: "Contact",
       languageLabel: "Switch language",
     },
     hero: {
       eyebrow: "Front-End Developer",
-      title: "Frontend work for products people actually use.",
+      title: "I build the part of a product people actually see, use, and remember.",
       titleAccent: "Artin Karimi",
       body:
-        "I build interfaces with the less glamorous parts in mind too: responsive layouts, edge states, interaction details, and the polish that makes a product feel ready.",
-      primaryCta: "See Innoverse",
-      secondaryCta: "View product states",
-      contactNote: "Focused on frontend roles and product-minded web work.",
-      statusLabel: "Frontend focus",
-      statusValue: "Product-grade frontend",
-      detailLabel: "What I care about",
-      detailValue: "Clear flows, careful states, and interfaces that hold together.",
-      proofOne: "Responsive by design",
-      proofTwo: "LTR / RTL ready",
-      proofThree: "Reduced motion respected",
+        "I work with React and modern web tools to turn ideas into polished, responsive web experiences that feel ready for real use.",
+      primaryCta: "See my work",
+      secondaryCta: "Work with me",
+      contactNote: "Available for frontend roles, freelance projects, and thoughtful collaborations.",
+      statusLabel: "Role",
+      statusValue: "Front-End Developer",
+      detailLabel: "Focus",
+      detailValue: "Polished web products that people can understand and use.",
+      proofOne: "Real project work",
+      proofTwo: "English / Persian",
+      proofThree: "Built with care",
     },
     featuredWork: {
-      sectionLabel: "Featured work",
-      eyebrow: "Real project proof",
-      title: "Innoverse was built for a real coding competition.",
+      sectionLabel: "Selected work",
+      eyebrow: "Project proof",
+      title: "Innoverse",
       summary:
-        "A team-built platform for ViaX Code Arena, covering the practical parts of a competition: participants, teams, problems, submissions, judging, and leaderboard behavior.",
-      resultLabel: "Competition result",
-      resultValue: "Silver Medal",
+        "A coding competition platform built with my team for ViaX Code Arena.",
+      resultLabel: "Result",
+      resultValue: "Silver Medal · ViaX Code Arena",
       roleLabel: "Contribution",
       roleValue: "Team member and project presenter",
-      scopeLabel: "Product scope",
-      scopeValue: "Administration, anti-cheat considerations, submission processing, and AI-assisted judging feedback.",
+      scopeLabel: "What we built",
+      scopeValue:
+        "One place for participants, teams, problems, submissions, judging, and rankings.",
       mediaLabel: "Innoverse product screenshots",
       mediaPlaceholder: "ViaX Code Arena login, dashboard, problems, and leaderboard views",
       mediaNote: "Real project screens from the Innoverse competition platform.",
@@ -161,93 +163,86 @@ export const siteCopy: Record<Language, SiteCopy> = {
             "ViaX Code Arena leaderboard ranking teams by accepted score, solved problems, attempts, and acceptance timing.",
         },
       ],
-      systemTitle: "What the product had to support",
+      systemTitle: "Product areas",
       systemItems: [
         "Participants and teams",
         "Problems and submissions",
         "Judging and feedback",
         "Leaderboard behavior",
       ],
-      stackLabel: "Built with",
-      stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
+      stackLabel: "Context",
+      stack: ["React", "PHP", "MySQL", "Docker"],
     },
     howIWork: {
-      eyebrow: "How I work",
-      title: "The screenshot is only the easy part.",
+      eyebrow: "Working together",
+      title: "What I care about when I build.",
       intro:
-        "The real work is everything around it: states, edge cases, production bugs, and the small decisions people actually feel.",
+        "I don't want to sell you a list of buzzwords. These are the things I actually care about when a project has my name on it.",
       proofs: [
         {
           number: "01",
-          context: "Innoverse · team project",
-          title: "Real products have more than one good screen.",
+          context: "Product feel",
+          title: "It should feel finished.",
           evidence:
-            "Innoverse had to support participants, teams, problems, submissions, judging, rankings, administration, and AI-assisted feedback inside one competition flow.",
-          trace: ["Participants", "Submission", "Judging", "Ranking"],
+            "A website can technically work and still feel rough. I care about the layout, responsiveness, interaction, consistency, and the small details people notice.",
+          trace: ["Layout", "Responsiveness", "Interaction", "Consistency"],
         },
         {
           number: "02",
-          context: "Jazireh · production debugging",
-          title: "Working API. Broken experience.",
+          context: "Real projects",
+          title: "I work with real constraints.",
           evidence:
-            "On Jazireh, the backend returned 200 OK while the interface still showed unavailable. The issue was the response contract: WordPress wrapped the data differently from what the frontend expected.",
-          trace: ["200 OK", "UI unavailable", "response contract"],
+            "Real projects come with changing requirements, backend integrations, unexpected problems, and things that work differently outside a perfect demo. I've worked through that reality.",
+          trace: ["Requirements", "Integrations", "Unexpected issues", "Usable result"],
         },
         {
           number: "03",
-          context: "This portfolio · proof zero",
-          title: "The details still matter when conditions change.",
+          context: "Product thinking",
+          title: "I care about the product, not just the code.",
           evidence:
-            "This site is being built around responsive layouts, English and Persian direction changes, keyboard states, reduced motion, and real project media; not added later as decoration.",
-          trace: ["390px", "RTL", "Keyboard", "Reduced motion"],
+            "I try to understand what the person using the product needs, what the business is trying to achieve, and how the frontend can make both sides work better.",
+          trace: ["User need", "Business goal", "Frontend decision", "Better product"],
         },
       ],
     },
     jazireh: {
-      eyebrow: "Production reality",
-      title: "The API said 200 OK. The screen still said unavailable.",
+      eyebrow: "Another build",
+      title: "Jazireh",
       intro:
-        "On Jazireh, the request succeeded, but the frontend and WordPress disagreed about the shape of the response.",
-      mediaLabel: "Jazireh product screen showing the sky status and unavailable state",
-      mediaNote: "Real Jazireh screen · sky status",
+        "An astronomy website built around content, real data, and an interactive web experience.",
+      supporting:
+        "I worked on the frontend experience and the connection between the site, WordPress, and external data, turning a content-heavy idea into a responsive product people can actually use.",
+      mediaLabel: "Jazireh astronomy website screenshot",
+      mediaNote: "Real Jazireh screen",
       mediaAlt:
-        "Jazireh Astronomy homepage in Persian showing the sky status for Tehran with an unavailable weather value.",
-      technicalLabel: "Technical signal",
-      plainLabel: "Plain meaning",
-      stages: [
+        "Jazireh Astronomy homepage in Persian with astronomy content, navigation, and sky status cards.",
+      details: [
         {
-          id: "symptom",
-          label: "Symptom",
-          technical: "GET -> 200 OK",
-          plain: "The request succeeded.",
-          detail: "The network looked healthy, but the interface could still fall back to unavailable.",
+          label: "Focus",
+          value: "Frontend experience",
         },
         {
-          id: "cause",
-          label: "Cause",
-          technical: "expected data / received { success, data }",
-          plain: "The interface looked in the wrong place for the data.",
-          detail:
-            "WordPress REST wrapped the useful response differently from what the frontend expected.",
+          label: "Project type",
+          value: "Astronomy content and data website",
         },
         {
-          id: "fix",
-          label: "Fix",
-          technical: "normalize response handling",
-          plain: "Read the response correctly before the UI trusts it.",
-          detail:
-            "The request layer had to account for the WordPress shape instead of masking the issue visually.",
+          label: "Context",
+          value: "Frontend · WordPress · APIs",
         },
       ],
-      contract: {
-        expectedLabel: "Expected",
-        receivedLabel: "Received",
-        expectedValue: "data",
-        receivedValues: ["success", "data"],
-      },
-      resolution:
-        "The fix was not another visual patch. The request layer had to understand the response correctly before the interface could trust it.",
-      contextLine: "Jazireh is an astronomy-related web project using frontend code, WordPress REST, and APIs.",
+    },
+    about: {
+      eyebrow: "A little about me",
+      title: "I like building things that feel intentional.",
+      body:
+        "I'm a front-end developer focused on React and real web projects. I learn by building, fixing what breaks, and pushing the result until it feels ready to show.",
+      secondaryBody:
+        "I'm interested in frontend roles, freelance projects, and collaborations with people building something worth shipping.",
+    },
+    contact: {
+      eyebrow: "Let's work together",
+      title: "Have something worth building?",
+      body: "If you're hiring, planning a web project, or want to collaborate, send me a message.",
     },
   },
   fa: {
@@ -260,39 +255,41 @@ export const siteCopy: Record<Language, SiteCopy> = {
       identity: "آرتین کریمی",
       role: "توسعه‌دهنده فرانت‌اند",
       work: "کارها",
-      thinking: "نگاه کاری",
+      approach: "رویکرد",
+      about: "درباره",
       contact: "ارتباط",
       languageLabel: "تغییر زبان",
     },
     hero: {
       eyebrow: "توسعه‌دهنده فرانت‌اند",
-      title: "فرانت‌اند برای محصولاتی که واقعاً استفاده می‌شوند.",
+      title: "من بخشی از محصول را می‌سازم که آدم‌ها می‌بینند، استفاده می‌کنند و به خاطر می‌سپارند.",
       titleAccent: "آرتین کریمی",
       body:
-        "من رابط‌هایی می‌سازم که فقط در اولین نگاه خوب نیستند؛ واکنش‌گرایی، وضعیت‌های مختلف، جزئیات تعامل و حس آماده‌بودن محصول هم برایم مهم است.",
-      primaryCta: "دیدن Innoverse",
-      secondaryCta: "دیدن حالت‌های محصول",
-      contactNote: "متمرکز بر فرانت‌اند و تجربه‌های وب محصول‌محور.",
-      statusLabel: "تمرکز فرانت‌اند",
-      statusValue: "فرانت‌اند در سطح محصول",
-      detailLabel: "چیزی که برایم مهم است",
-      detailValue: "جریان واضح، وضعیت‌های دقیق و رابطی که در استفاده واقعی دوام بیاورد.",
-      proofOne: "طراحی واکنش‌گرا",
-      proofTwo: "آماده LTR / RTL",
-      proofThree: "هماهنگ با کاهش حرکت",
+        "با React و ابزارهای مدرن وب کار می‌کنم تا ایده‌ها به تجربه‌های وب صیقل‌خورده، واکنش‌گرا و آماده استفاده واقعی تبدیل شوند.",
+      primaryCta: "دیدن کارها",
+      secondaryCta: "همکاری با من",
+      contactNote: "آماده برای نقش‌های فرانت‌اند، پروژه‌های فریلنسری و همکاری‌های جدی.",
+      statusLabel: "نقش",
+      statusValue: "توسعه‌دهنده فرانت‌اند",
+      detailLabel: "تمرکز",
+      detailValue: "محصولات وب صیقل‌خورده که آدم‌ها بتوانند بفهمند و استفاده کنند.",
+      proofOne: "کار واقعی",
+      proofTwo: "انگلیسی / فارسی",
+      proofThree: "ساخته‌شده با دقت",
     },
     featuredWork: {
       sectionLabel: "کار منتخب",
-      eyebrow: "نمونه‌ای از پروژه واقعی",
-      title: "Innoverse برای یک مسابقه برنامه‌نویسی واقعی ساخته شد.",
+      eyebrow: "نمونه پروژه",
+      title: "Innoverse",
       summary:
-        "یک پلتفرم تیمی برای ViaX Code Arena که بخش‌های عملی مسابقه را پوشش می‌داد: شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال‌ها، داوری و رفتار جدول رتبه‌بندی.",
-      resultLabel: "نتیجه مسابقه",
-      resultValue: "مدال نقره",
+        "یک پلتفرم مسابقه برنامه‌نویسی که همراه تیمم برای ViaX Code Arena ساختیم.",
+      resultLabel: "نتیجه",
+      resultValue: "مدال نقره · ViaX Code Arena",
       roleLabel: "نقش",
       roleValue: "عضو تیم و ارائه‌دهنده پروژه",
-      scopeLabel: "گستره محصول",
-      scopeValue: "مدیریت، ملاحظات ضدتقلب، پردازش ارسال‌ها و بازخورد داوری با کمک هوش مصنوعی.",
+      scopeLabel: "چیزی که ساختیم",
+      scopeValue:
+        "یک فضای واحد برای شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال‌ها، داوری و رتبه‌بندی.",
       mediaLabel: "تصاویر واقعی محصول Innoverse",
       mediaPlaceholder: "نمای ورود، داشبورد، مسئله‌ها و جدول رتبه‌بندی ViaX Code Arena",
       mediaNote: "تصاویر واقعی از پلتفرم مسابقه Innoverse.",
@@ -318,93 +315,86 @@ export const siteCopy: Record<Language, SiteCopy> = {
             "جدول رتبه‌بندی ViaX Code Arena که تیم‌ها را بر اساس امتیاز پذیرفته‌شده، مسئله‌های حل‌شده، تلاش‌ها و زمان پذیرش مرتب می‌کند.",
         },
       ],
-      systemTitle: "محصول باید چه چیزهایی را پشتیبانی می‌کرد",
+      systemTitle: "بخش‌های محصول",
       systemItems: [
         "شرکت‌کننده‌ها و تیم‌ها",
         "مسئله‌ها و ارسال‌ها",
         "داوری و بازخورد",
         "رفتار جدول رتبه‌بندی",
       ],
-      stackLabel: "ساخته‌شده با",
-      stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
+      stackLabel: "زمینه فنی",
+      stack: ["React", "PHP", "MySQL", "Docker"],
     },
     howIWork: {
-      eyebrow: "نحوه کار من",
-      title: "اسکرین‌شات، فقط بخش آسون ماجراست.",
+      eyebrow: "همکاری",
+      title: "وقتی چیزی می‌سازم، این‌ها برایم مهم‌اند.",
       intro:
-        "کار واقعی چیزهاییه که دورش اتفاق می‌افته: حالت‌ها، لبه‌های کار، باگ‌های پروداکشن و تصمیم‌های کوچیکی که کاربر واقعاً حسشون می‌کنه.",
+        "نمی‌خوام خودم رو با چند تا کلمه تکراری معرفی کنم. این‌ها چیزهایی هستند که وقتی اسمم پای یک پروژه است واقعاً برایم اهمیت دارند.",
       proofs: [
         {
           number: "01",
-          context: "Innoverse · پروژه تیمی",
-          title: "محصول واقعی فقط یک صفحه خوشگل نیست.",
+          context: "حس محصول",
+          title: "باید حس تمام‌شده داشته باشد.",
           evidence:
-            "Innoverse باید شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال جواب‌ها، داوری، رتبه‌بندی، مدیریت و بازخورد مبتنی بر AI رو داخل یک جریان مسابقه پشتیبانی می‌کرد.",
-          trace: ["شرکت‌کننده‌ها", "ارسال جواب", "داوری", "رتبه‌بندی"],
+            "یک سایت می‌تواند از نظر فنی کار کند اما هنوز خام و ناتمام به نظر برسد. من به چیدمان، واکنش‌گرایی، تعامل، هماهنگی و جزئیات کوچکی که کاربر حس می‌کند اهمیت می‌دهم.",
+          trace: ["چیدمان", "واکنش‌گرایی", "تعامل", "هماهنگی"],
         },
         {
           number: "02",
-          context: "Jazireh · دیباگ پروداکشن",
-          title: "API سالم بود. تجربه کاربری نه.",
+          context: "پروژه واقعی",
+          title: "با محدودیت‌های واقعی کار می‌کنم.",
           evidence:
-            "در Jazireh بک‌اند پاسخ 200 OK می‌داد، ولی رابط کاربری هنوز وضعیت unavailable نشون می‌داد. مشکل از قرارداد پاسخ بود؛ WordPress داده رو با ساختاری برمی‌گردوند که با چیزی که فرانت‌اند انتظار داشت فرق داشت.",
-          trace: ["200 OK", "UI unavailable", "قرارداد پاسخ"],
+            "پروژه واقعی همیشه مثل دموی تمیز و کامل پیش نمی‌رود؛ نیازها عوض می‌شوند، اتصال به بک‌اند وجود دارد، مشکل‌های غیرمنتظره پیش می‌آید و بعضی چیزها بیرون از محیط ایده‌آل فرق می‌کنند. من با این واقعیت کار کرده‌ام.",
+          trace: ["نیازها", "اتصال‌ها", "مشکل‌های واقعی", "نتیجه قابل استفاده"],
         },
         {
           number: "03",
-          context: "همین سایت · اولین مدرک",
-          title: "جزئیات وقتی شرایط عوض میشه هم باید درست بمونن.",
+          context: "نگاه محصولی",
+          title: "فقط کد برایم مهم نیست؛ خود محصول هم مهم است.",
           evidence:
-            "همین سایت از اول با ریسپانسیو بودن، تغییر جهت انگلیسی و فارسی، حالت‌های کیبورد، Reduced Motion و تصاویر واقعی پروژه ساخته شده؛ نه اینکه آخر کار بهش اضافه بشن.",
-          trace: ["390px", "RTL", "کیبورد", "Reduced motion"],
+            "سعی می‌کنم بفهمم کسی که از محصول استفاده می‌کند چه نیازی دارد، کسب‌وکار به چه نتیجه‌ای می‌خواهد برسد و فرانت‌اند چطور می‌تواند بین این دو بهتر پل بزند.",
+          trace: ["نیاز کاربر", "هدف کسب‌وکار", "تصمیم فرانت‌اند", "محصول بهتر"],
         },
       ],
     },
     jazireh: {
-      eyebrow: "واقعیت پروداکشن",
-      title: "API می‌گفت 200 OK. صفحه هنوز می‌گفت unavailable.",
+      eyebrow: "یک ساخت دیگر",
+      title: "Jazireh",
       intro:
-        "در Jazireh درخواست موفق بود، اما فرانت‌اند و WordPress ساختار پاسخ رو یکسان نمی‌دیدن.",
-      mediaLabel: "اسکرین واقعی Jazireh با وضعیت آسمان و مقدار ناموجود",
-      mediaNote: "اسکرین واقعی Jazireh · وضعیت آسمان",
+        "یک وب‌سایت نجومی که حول محتوا، داده واقعی و یک تجربه وب تعاملی ساخته شد.",
+      supporting:
+        "من روی تجربه فرانت‌اند و اتصال بین سایت، WordPress و داده‌های بیرونی کار کردم تا یک ایده محتوایی سنگین به محصولی واکنش‌گرا و قابل استفاده تبدیل شود.",
+      mediaLabel: "اسکرین‌شات وب‌سایت نجومی Jazireh",
+      mediaNote: "اسکرین واقعی Jazireh",
       mediaAlt:
-        "صفحه خانه Jazireh Astronomy به زبان فارسی که وضعیت آسمان تهران و مقدار ناموجود هوا را نشان می‌دهد.",
-      technicalLabel: "نشانه فنی",
-      plainLabel: "معنی ساده",
-      stages: [
+        "صفحه خانه Jazireh Astronomy به زبان فارسی با محتوای نجومی، ناوبری و کارت‌های وضعیت آسمان.",
+      details: [
         {
-          id: "symptom",
-          label: "نشانه",
-          technical: "GET -> 200 OK",
-          plain: "درخواست موفق بود.",
-          detail: "شبکه ظاهراً سالم بود، اما رابط کاربری هنوز می‌توانست به حالت unavailable برود.",
+          label: "تمرکز",
+          value: "تجربه فرانت‌اند",
         },
         {
-          id: "cause",
-          label: "علت",
-          technical: "expected data / received { success, data }",
-          plain: "رابط کاربری دنبال داده در جای اشتباه می‌گشت.",
-          detail:
-            "WordPress REST داده اصلی را داخل ساختاری برمی‌گرداند که با انتظار فرانت‌اند یکی نبود.",
+          label: "نوع پروژه",
+          value: "وب‌سایت نجومی مبتنی بر محتوا و داده",
         },
         {
-          id: "fix",
-          label: "راه‌حل",
-          technical: "normalize response handling",
-          plain: "قبل از اعتماد رابط کاربری، پاسخ باید درست خوانده می‌شد.",
-          detail:
-            "لایه درخواست باید ساختار پاسخ WordPress را در نظر می‌گرفت، نه اینکه مشکل با یک وصله ظاهری پنهان شود.",
+          label: "زمینه",
+          value: "فرانت‌اند · WordPress · API",
         },
       ],
-      contract: {
-        expectedLabel: "انتظار",
-        receivedLabel: "دریافت",
-        expectedValue: "data",
-        receivedValues: ["success", "data"],
-      },
-      resolution:
-        "راه‌حل یک وصله ظاهری دیگه نبود؛ لایه درخواست باید پاسخ رو درست می‌فهمید تا رابط کاربری بتونه به داده اعتماد کنه.",
-      contextLine: "Jazireh یک پروژه وب مرتبط با نجوم است که با فرانت‌اند، WordPress REST و API درگیر بود.",
+    },
+    about: {
+      eyebrow: "کمی درباره من",
+      title: "دوست دارم چیزهایی بسازم که عمدی و فکرشده حس شوند.",
+      body:
+        "من توسعه‌دهنده فرانت‌اند هستم و تمرکزم روی React و پروژه‌های واقعی وب است. با ساختن یاد می‌گیرم، چیزهایی را که خراب می‌شوند درست می‌کنم و نتیجه را آن‌قدر جلو می‌برم تا آماده نمایش باشد.",
+      secondaryBody:
+        "به نقش‌های فرانت‌اند، پروژه‌های فریلنسری و همکاری با آدم‌هایی علاقه دارم که چیزی ارزشمند برای ساختن دارند.",
+    },
+    contact: {
+      eyebrow: "بیایید همکاری کنیم",
+      title: "چیزی برای ساختن دارید؟",
+      body: "اگر در حال استخدام هستید، پروژه وب دارید یا می‌خواهید همکاری کنیم، برایم پیام بفرستید.",
     },
   },
 };

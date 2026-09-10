@@ -10,7 +10,7 @@ import innoverseLogin from "./assets/innoverse/innoverse1.png";
 import innoverseDashboard from "./assets/innoverse/innoverse2.png";
 import innoverseProblems from "./assets/innoverse/innoverse3.png";
 import innoverseLeaderboard from "./assets/innoverse/innoverse4.png";
-import { JazirehProductionStory } from "./components/JazirehProductionStory";
+import { JazirehProject } from "./components/JazirehProject";
 import { siteCopy, type Language, type SiteCopy } from "./content";
 
 const languageStorageKey = "artin-portfolio-language";
@@ -63,7 +63,9 @@ export default function App() {
         <Hero copy={copy} />
         <FeaturedWork copy={copy} />
         <HowIWork copy={copy} />
-        <JazirehProductionStory copy={copy} />
+        <JazirehProject copy={copy} />
+        <About copy={copy} />
+        <Contact copy={copy} />
       </main>
     </div>
   );
@@ -115,10 +117,22 @@ function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
             {copy.nav.work}
           </a>
           <a
-            href="#thinking"
+            href="#approach"
             className="inline-flex min-h-10 items-center rounded-[0.65rem] px-3 outline-none transition hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/70"
           >
-            {copy.nav.thinking}
+            {copy.nav.approach}
+          </a>
+          <a
+            href="#about"
+            className="inline-flex min-h-10 items-center rounded-[0.65rem] px-3 outline-none transition hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/70"
+          >
+            {copy.nav.about}
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex min-h-10 items-center rounded-[0.65rem] px-3 outline-none transition hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/70"
+          >
+            {copy.nav.contact}
           </a>
         </div>
 
@@ -211,7 +225,7 @@ function Hero({ copy }: { copy: SiteCopy }) {
                 {copy.hero.primaryCta}
               </a>
               <a
-                href="#innoverse-screen"
+                href="#contact"
                 className="inline-flex min-h-12 items-center justify-center rounded-control border border-subtle bg-elevated px-5 text-sm font-semibold text-primary outline-none transition hover:-translate-y-0.5 hover:border-accent/45 focus-visible:ring-2 focus-visible:ring-accent/70"
               >
                 {copy.hero.secondaryCta}
@@ -473,9 +487,9 @@ function HowIWork({ copy }: { copy: SiteCopy }) {
 
   return (
     <section
-      id="thinking"
+      id="approach"
       className="thinking-section relative isolate px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
-      aria-labelledby="thinking-title"
+      aria-labelledby="approach-title"
     >
       <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(18rem,0.48fr)_minmax(0,1fr)] lg:gap-16">
         <motion.div
@@ -487,7 +501,7 @@ function HowIWork({ copy }: { copy: SiteCopy }) {
         >
           <p className="text-sm font-semibold text-accent">{copy.howIWork.eyebrow}</p>
           <h2
-            id="thinking-title"
+            id="approach-title"
             className="mt-4 max-w-2xl text-balance text-[clamp(2.15rem,4.4vw,4.6rem)] font-semibold leading-[1.02] tracking-normal text-primary"
           >
             {copy.howIWork.title}
@@ -529,6 +543,71 @@ function HowIWork({ copy }: { copy: SiteCopy }) {
           ))}
         </div>
       </div>
+    </section>
+  );
+}
+
+function About({ copy }: { copy: SiteCopy }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <section
+      id="about"
+      className="about-section relative isolate px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+      aria-labelledby="about-title"
+    >
+      <motion.div
+        className="about-shell mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,0.42fr)] lg:items-end"
+        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-12% 0px" }}
+        transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="text-start">
+          <p className="text-sm font-semibold text-accent">{copy.about.eyebrow}</p>
+          <h2
+            id="about-title"
+            className="mt-4 max-w-3xl text-balance text-[clamp(2.1rem,4vw,4.35rem)] font-semibold leading-[1.04] tracking-normal text-primary"
+          >
+            {copy.about.title}
+          </h2>
+        </div>
+        <div className="about-copy">
+          <p>{copy.about.body}</p>
+          <p>{copy.about.secondaryBody}</p>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+function Contact({ copy }: { copy: SiteCopy }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <section
+      id="contact"
+      className="contact-section relative isolate px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+      aria-labelledby="contact-title"
+    >
+      <motion.div
+        className="contact-shell mx-auto w-full max-w-7xl text-start"
+        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-12% 0px" }}
+        transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <p className="text-sm font-semibold text-accent">{copy.contact.eyebrow}</p>
+        <h2
+          id="contact-title"
+          className="mt-4 max-w-4xl text-balance text-[clamp(2.35rem,5vw,5.2rem)] font-semibold leading-[0.99] tracking-normal text-primary"
+        >
+          {copy.contact.title}
+        </h2>
+        <p className="mt-5 max-w-2xl text-pretty text-lg leading-8 text-secondary">
+          {copy.contact.body}
+        </p>
+      </motion.div>
     </section>
   );
 }

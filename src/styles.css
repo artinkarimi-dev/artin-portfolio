@@ -769,148 +769,6 @@ a {
   border-color: rgb(216 180 106 / 0.1);
 }
 
-.diagnostic-path {
-  position: relative;
-  display: grid;
-  gap: 0;
-  padding-inline-start: 1.7rem;
-}
-
-[dir="rtl"] .diagnostic-path {
-  padding-inline: 0 1.7rem;
-}
-
-.diagnostic-rail {
-  position: absolute;
-  inset-block: 1.3rem;
-  inset-inline-start: 0.33rem;
-  width: 1px;
-  overflow: hidden;
-  background: rgb(244 239 231 / 0.12);
-}
-
-[dir="rtl"] .diagnostic-rail {
-  inset-inline-start: auto;
-  inset-inline-end: 0.33rem;
-}
-
-.diagnostic-rail span {
-  display: block;
-  width: 100%;
-  min-height: 2rem;
-  background: linear-gradient(to bottom, var(--color-accent), rgb(95 139 177 / 0.95));
-}
-
-.diagnostic-step {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.85rem;
-  border-block-start: 1px solid rgb(244 239 231 / 0.1);
-  padding-block: clamp(1.2rem, 2.6vw, 1.75rem);
-  outline: none;
-}
-
-.diagnostic-step:last-child {
-  border-block-end: 1px solid rgb(244 239 231 / 0.1);
-}
-
-.diagnostic-marker {
-  position: absolute;
-  inset-block-start: 1.3rem;
-  inset-inline-start: -1.68rem;
-  z-index: 2;
-  display: grid;
-  width: 1.1rem;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid rgb(216 180 106 / 0.34);
-  border-radius: 999px;
-  background: var(--color-portfolio);
-  color: transparent;
-  font-size: 0.01rem;
-  transition:
-    background 180ms var(--ease-portfolio),
-    border-color 180ms var(--ease-portfolio),
-    box-shadow 180ms var(--ease-portfolio),
-    transform 180ms var(--ease-portfolio);
-}
-
-[dir="rtl"] .diagnostic-marker {
-  inset-inline-start: auto;
-  inset-inline-end: -1.68rem;
-}
-
-.diagnostic-step:hover .diagnostic-marker,
-.diagnostic-step:focus-visible .diagnostic-marker,
-.diagnostic-step.is-active .diagnostic-marker {
-  border-color: var(--color-accent);
-  background: var(--color-accent);
-  box-shadow: 0 0 0 0.45rem rgb(216 180 106 / 0.11);
-  transform: scale(1.08);
-}
-
-.diagnostic-step:focus-visible {
-  border-radius: 0.85rem;
-  box-shadow: 0 0 0 3px rgb(216 180 106 / 0.24);
-}
-
-.diagnostic-label {
-  color: rgb(216 180 106 / 0.82);
-  font-size: 0.75rem;
-  font-weight: 780;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-[dir="rtl"] .diagnostic-label {
-  letter-spacing: 0;
-}
-
-.diagnostic-reading {
-  display: grid;
-  gap: 0.8rem;
-  margin-block-start: 0.75rem;
-}
-
-.diagnostic-reading div {
-  display: grid;
-  gap: 0.25rem;
-}
-
-.diagnostic-reading dt {
-  color: var(--color-muted);
-  font-size: 0.72rem;
-  font-weight: 760;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-[dir="rtl"] .diagnostic-reading dt {
-  letter-spacing: 0;
-}
-
-.diagnostic-reading dd {
-  margin: 0;
-  color: var(--color-primary);
-  font-size: clamp(1rem, 1.5vw, 1.12rem);
-  font-weight: 650;
-  line-height: 1.45;
-}
-
-.diagnostic-detail {
-  max-width: 42rem;
-  margin-block-start: 0.8rem;
-  color: var(--color-secondary);
-  font-size: 0.98rem;
-  line-height: 1.75;
-}
-
-.jazireh-evidence {
-  position: relative;
-}
-
 .jazireh-media {
   position: relative;
   overflow: hidden;
@@ -931,8 +789,8 @@ a {
   content: "";
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgb(10 12 14 / 0.16), transparent 42%, rgb(10 12 14 / 0.54)),
-    radial-gradient(circle at 72% 22%, rgb(95 139 177 / 0.12), transparent 35%);
+    linear-gradient(90deg, rgb(10 12 14 / 0.08), transparent 48%, rgb(10 12 14 / 0.28)),
+    radial-gradient(circle at 72% 22%, rgb(95 139 177 / 0.08), transparent 35%);
 }
 
 .jazireh-media-bar {
@@ -978,92 +836,85 @@ a {
   aspect-ratio: 3200 / 1579;
   object-fit: cover;
   object-position: left top;
+  filter: brightness(1.16) contrast(1.04);
   transform-origin: center;
 }
 
-.response-contract {
-  position: relative;
-  z-index: 2;
+.jazireh-meta {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) 3.25rem minmax(0, 1fr);
-  gap: 0.85rem;
-  width: min(92%, 31rem);
-  margin: -4.2rem auto 0;
-  border: 1px solid rgb(244 239 231 / 0.13);
-  border-radius: 1.35rem;
-  background: rgb(13 15 16 / 0.88);
-  padding: 1rem;
-  box-shadow: 0 24px 70px rgb(0 0 0 / 0.38);
-  backdrop-filter: blur(18px);
+  gap: 0;
+  border-block: 1px solid rgb(244 239 231 / 0.12);
 }
 
-.response-contract p {
+.jazireh-meta div {
+  padding-block: 1rem;
+}
+
+.jazireh-meta div + div {
+  border-block-start: 1px solid rgb(244 239 231 / 0.1);
+}
+
+.jazireh-meta dt {
   color: var(--color-muted);
-  font-size: 0.68rem;
-  font-weight: 780;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-[dir="rtl"] .response-contract p {
+[dir="rtl"] .jazireh-meta dt {
   letter-spacing: 0;
 }
 
-.response-contract strong,
-.response-contract li {
-  display: block;
-  margin-block-start: 0.45rem;
-  border: 1px solid rgb(244 239 231 / 0.1);
-  border-radius: 0.85rem;
-  background: rgb(244 239 231 / 0.055);
-  padding: 0.58rem 0.68rem;
+.jazireh-meta dd {
+  margin: 0.32rem 0 0;
   color: var(--color-primary);
-  font-size: 0.9rem;
-  font-weight: 720;
-  line-height: 1.2;
+  font-size: 1rem;
+  font-weight: 620;
+  line-height: 1.55;
 }
 
-.response-contract li:first-child {
-  color: rgb(216 180 106 / 0.86);
+.about-section,
+.contact-section {
+  scroll-margin-block-start: 6.5rem;
 }
 
-.contract-mismatch {
-  align-self: center;
-  height: 1px;
-  background: linear-gradient(90deg, rgb(216 180 106 / 0.72), rgb(95 139 177 / 0.72));
+.about-section {
+  background:
+    linear-gradient(to bottom, var(--color-portfolio), rgb(18 20 20 / 0.98) 48%, var(--color-portfolio)),
+    radial-gradient(circle at 12% 18%, rgb(216 180 106 / 0.075), transparent 27rem);
 }
 
-.contract-mismatch::after {
-  display: block;
-  width: 0.5rem;
-  aspect-ratio: 1;
-  margin-block-start: -0.24rem;
-  margin-inline-start: auto;
-  content: "";
-  border-radius: 999px;
-  background: var(--color-accent);
+.about-shell {
+  border-block: 1px solid rgb(244 239 231 / 0.12);
+  padding-block: clamp(2rem, 5vw, 4rem);
 }
 
-.jazireh-resolution {
+.about-copy {
   display: grid;
   gap: 1rem;
-  border-block-start: 1px solid rgb(244 239 231 / 0.12);
-  padding-block-start: clamp(1.3rem, 3vw, 1.8rem);
+  color: var(--color-secondary);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.85;
 }
 
-.jazireh-resolution p {
-  max-width: 58rem;
-  color: var(--color-primary);
-  font-size: clamp(1.12rem, 2vw, 1.45rem);
-  font-weight: 620;
-  line-height: 1.65;
+.contact-section {
+  background:
+    radial-gradient(circle at 76% 12%, rgb(216 180 106 / 0.13), transparent 26rem),
+    linear-gradient(to bottom, var(--color-portfolio), rgb(17 16 13 / 0.98));
 }
 
-.jazireh-resolution span {
-  max-width: 44rem;
-  color: var(--color-muted);
-  font-size: 0.92rem;
-  line-height: 1.7;
+.contact-shell {
+  overflow: hidden;
+  border: 1px solid var(--color-subtle);
+  border-radius: var(--radius-stage);
+  background:
+    linear-gradient(145deg, rgb(244 239 231 / 0.08), transparent 42%),
+    linear-gradient(160deg, rgb(27 30 32 / 0.94), rgb(13 15 16 / 0.98));
+  padding: clamp(1.4rem, 5vw, 4rem);
+  box-shadow:
+    0 32px 90px rgb(0 0 0 / 0.4),
+    inset 0 1px 0 rgb(255 255 255 / 0.09);
 }
 
 @media (max-width: 1023px) {
@@ -1095,7 +946,7 @@ a {
 
   .jazireh-media img {
     min-height: 31rem;
-    object-position: 58% center;
+    object-position: 24% top;
   }
 }
 
@@ -1214,23 +1065,6 @@ a {
     inset-inline: -22% auto;
   }
 
-  .diagnostic-path {
-    padding-inline-start: 1.25rem;
-  }
-
-  [dir="rtl"] .diagnostic-path {
-    padding-inline: 0 1.25rem;
-  }
-
-  .diagnostic-marker {
-    inset-inline-start: -1.27rem;
-  }
-
-  [dir="rtl"] .diagnostic-marker {
-    inset-inline-start: auto;
-    inset-inline-end: -1.27rem;
-  }
-
   .jazireh-media {
     border-radius: 1.45rem;
   }
@@ -1247,26 +1081,9 @@ a {
 
   .jazireh-media img {
     min-height: 28rem;
-    object-position: 0% center;
+    object-position: 0% top;
   }
 
-  .response-contract {
-    grid-template-columns: 1fr;
-    gap: 0.65rem;
-    margin-block-start: -2.2rem;
-  }
-
-  .contract-mismatch {
-    width: 1px;
-    height: 1.8rem;
-    justify-self: center;
-    background: linear-gradient(to bottom, rgb(216 180 106 / 0.72), rgb(95 139 177 / 0.72));
-  }
-
-  .contract-mismatch::after {
-    margin-block-start: auto;
-    margin-inline-start: -0.24rem;
-  }
 }
 
 @media (max-width: 639px) {
