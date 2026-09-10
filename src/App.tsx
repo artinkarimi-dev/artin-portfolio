@@ -6,9 +6,32 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import innoverseLogin from "./assets/innoverse/innoverse1.png";
+import innoverseDashboard from "./assets/innoverse/innoverse2.png";
+import innoverseProblems from "./assets/innoverse/innoverse3.png";
+import innoverseLeaderboard from "./assets/innoverse/innoverse4.png";
 import { siteCopy, type Language, type SiteCopy } from "./content";
 
 const languageStorageKey = "artin-portfolio-language";
+
+const innoverseScreens = [
+  {
+    id: "entry",
+    image: innoverseLogin,
+  },
+  {
+    id: "dashboard",
+    image: innoverseDashboard,
+  },
+  {
+    id: "problems",
+    image: innoverseProblems,
+  },
+  {
+    id: "leaderboard",
+    image: innoverseLeaderboard,
+  },
+] as const;
 
 function getInitialLanguage(): Language {
   if (typeof window === "undefined") {
@@ -241,13 +264,16 @@ function Hero({ copy }: { copy: SiteCopy }) {
 function FeaturedWork({ copy }: { copy: SiteCopy }) {
   const shouldReduceMotion = useReducedMotion();
   const detailId = useId();
+  const screenshotLabelId = useId();
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [activeScreenIndex, setActiveScreenIndex] = useState(0);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const springX = useSpring(pointerX, { stiffness: 130, damping: 28, mass: 0.35 });
   const springY = useSpring(pointerY, { stiffness: 130, damping: 28, mass: 0.35 });
-  const rotateY = useTransform(springX, [-1, 1], [-5, 5]);
-  const rotateX = useTransform(springY, [-1, 1], [4, -4]);
+  const rotateY = useTransform(springX, [-1, 1], [-3.5, 3.5]);
+  const rotateX = useTransform(springY, [-1, 1], [2.5, -2.5]);
+  const activeScreen = innoverseScreens[activeScreenIndex];
 
   function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
     if (shouldReduceMotion) {
@@ -303,7 +329,6 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
             className="work-showcase"
             onPointerMove={handlePointerMove}
             onPointerLeave={resetPointer}
-            onFocus={() => setIsDetailOpen(true)}
             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
@@ -318,27 +343,55 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
                   : {
                       rotateX,
                       rotateY,
-                    }
+                }
               }
             >
               <div className="work-window-bar">
-                <span />
-                <span />
-                <span />
+                <span aria-hidden="true" />
+                <span aria-hidden="true" />
+                <span aria-hidden="true" />
+                <p>{copy.featuredWork.mediaNote}</p>
+              </div>
+              <div className="work-screenshot-shell">
+                <motion.img
+                  key={activeScreen.id}
+                  src={activeScreen.image}
+                  width="3200"
+                  height="1800"
+                  alt={copy.featuredWork.screens[activeScreenIndex].alt}
+                  id="innoverse-screen"
+                  decoding="async"
+                  fetchPriority={activeScreenIndex === 0 ? "high" : "auto"}
+                  initial={{ opacity: 0.2, scale: shouldReduceMotion ? 1 : 1.015 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                />
+              </div>
+              <div
+                className="work-screen-selector"
+                role="tablist"
+                aria-labelledby={screenshotLabelId}
+              >
+                <p id={screenshotLabelId}>{copy.featuredWork.mediaPlaceholder}</p>
+                <div>
+                  {innoverseScreens.map((screen, index) => (
+                    <button
+                      key={screen.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={activeScreenIndex === index}
+                      aria-controls="innoverse-screen"
+                      className={activeScreenIndex === index ? "is-active" : ""}
+                      onClick={() => setActiveScreenIndex(index)}
+                    >
+                      {copy.featuredWork.screens[index].label}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div className="work-rank-surface">
                 <span>{copy.featuredWork.resultLabel}</span>
                 <strong>{copy.featuredWork.resultValue}</strong>
-              </div>
-              <div className="work-flow-map" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="work-placeholder">
-                <span>{copy.featuredWork.mediaPlaceholder}</span>
-                <p>{copy.featuredWork.mediaNote}</p>
               </div>
             </motion.div>
           </motion.article>

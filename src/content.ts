@@ -29,7 +29,6 @@ export type SiteCopy = {
     proofOne: string;
     proofTwo: string;
     proofThree: string;
-    photoLabel: string;
   };
   featuredWork: {
     sectionLabel: string;
@@ -45,6 +44,10 @@ export type SiteCopy = {
     mediaLabel: string;
     mediaPlaceholder: string;
     mediaNote: string;
+    screens: {
+      label: string;
+      alt: string;
+    }[];
     systemTitle: string;
     systemItems: string[];
     stackLabel: string;
@@ -72,38 +75,59 @@ export const siteCopy: Record<Language, SiteCopy> = {
     },
     hero: {
       eyebrow: "Front-End Developer",
-      title: "Frontend for real products, finished in the details.",
+      title: "Frontend work for products people actually use.",
       titleAccent: "Artin Karimi",
       body:
-        "I build frontend experiences for real products, with attention to the states, details, and interactions that make an interface feel ready to use.",
+        "I build interfaces with the less glamorous parts in mind too: responsive layouts, edge states, interaction details, and the polish that makes a product feel ready.",
       primaryCta: "Start a conversation",
-      secondaryCta: "See the first proof",
+      secondaryCta: "See Innoverse",
       contactNote: "Contact links will connect once the final channels are approved.",
-      statusLabel: "Current focus",
+      statusLabel: "Frontend focus",
       statusValue: "Product-grade frontend",
-      detailLabel: "Working style",
-      detailValue: "Clear first. Polished next. Shipped for real.",
+      detailLabel: "What I care about",
+      detailValue: "Clear flows, careful states, and interfaces that hold together.",
       proofOne: "Responsive by design",
       proofTwo: "LTR / RTL ready",
       proofThree: "Reduced motion respected",
-      photoLabel: "Personal photo placeholder",
     },
     featuredWork: {
       sectionLabel: "Featured work",
       eyebrow: "Real project proof",
-      title: "Innoverse made competition flow manageable.",
+      title: "Innoverse was built for a real coding competition.",
       summary:
-        "A competition platform built for ViaX Code Arena to manage participants, teams, problems, submissions, judging, and live leaderboard behavior.",
+        "A team-built platform for ViaX Code Arena, covering the practical parts of a competition: participants, teams, problems, submissions, judging, and leaderboard behavior.",
       resultLabel: "Competition result",
       resultValue: "Silver Medal",
       roleLabel: "Contribution",
       roleValue: "Team member and project presenter",
       scopeLabel: "Product scope",
-      scopeValue: "Administration, anti-cheat thinking, submission processing, and AI-assisted judging feedback.",
-      mediaLabel: "Innoverse media frame",
-      mediaPlaceholder: "Screenshot-ready product frame",
-      mediaNote: "Real Innoverse visuals can drop into this frame later.",
-      systemTitle: "What the platform handled",
+      scopeValue: "Administration, anti-cheat considerations, submission processing, and AI-assisted judging feedback.",
+      mediaLabel: "Innoverse product screenshots",
+      mediaPlaceholder: "ViaX Code Arena login, dashboard, problems, and leaderboard views",
+      mediaNote: "Real project screens from the Innoverse competition platform.",
+      screens: [
+        {
+          label: "Entry",
+          alt:
+            "ViaX Code Arena login screen with demo workspaces for participant, judge, and admin roles.",
+        },
+        {
+          label: "Dashboard",
+          alt:
+            "ViaX Code Arena participant dashboard showing team progress, solved problems, score, rank, and recent submissions.",
+        },
+        {
+          label: "Problems",
+          alt:
+            "ViaX Code Arena problems view with filters and solved programming challenge cards.",
+        },
+        {
+          label: "Leaderboard",
+          alt:
+            "ViaX Code Arena leaderboard ranking teams by accepted score, solved problems, attempts, and acceptance timing.",
+        },
+      ],
+      systemTitle: "What the product had to support",
       systemItems: [
         "Participants and teams",
         "Problems and submissions",
@@ -112,10 +136,10 @@ export const siteCopy: Record<Language, SiteCopy> = {
       ],
       stackLabel: "Secondary technical context",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
-      actionLabel: "Preview project story",
+      actionLabel: "Show story note",
       actionDetail: "The full case study route is not connected yet.",
       activeDetail:
-        "Future story space reserved: problem, role, team decisions, judging flow, and shipped result.",
+        "The full case study is still deferred. This first presentation focuses on verified facts: the product scope, team context, presentation role, and Silver Medal result.",
     },
   },
   fa: {
@@ -134,38 +158,59 @@ export const siteCopy: Record<Language, SiteCopy> = {
     },
     hero: {
       eyebrow: "توسعه‌دهنده فرانت‌اند",
-      title: "فرانت‌اند برای محصول واقعی، پرداخت‌شده در جزئیات.",
+      title: "فرانت‌اند برای محصولاتی که واقعاً استفاده می‌شوند.",
       titleAccent: "آرتین کریمی",
       body:
-        "من تجربه‌های فرانت‌اند برای محصولات واقعی می‌سازم؛ با توجه به وضعیت‌ها، جزئیات و تعامل‌هایی که باعث می‌شوند یک رابط آماده استفاده باشد.",
+        "من رابط‌هایی می‌سازم که فقط در اولین نگاه خوب نیستند؛ واکنش‌گرایی، وضعیت‌های مختلف، جزئیات تعامل و حس آماده‌بودن محصول هم برایم مهم است.",
       primaryCta: "شروع گفتگو",
-      secondaryCta: "دیدن اولین نشانه",
+      secondaryCta: "دیدن Innoverse",
       contactNote: "لینک‌های ارتباطی بعد از تایید مسیرهای نهایی وصل می‌شوند.",
-      statusLabel: "تمرکز فعلی",
+      statusLabel: "تمرکز فرانت‌اند",
       statusValue: "فرانت‌اند در سطح محصول",
-      detailLabel: "سبک کار",
-      detailValue: "اول واضح. بعد پرداخت‌شده. در نهایت قابل استفاده.",
+      detailLabel: "چیزی که برایم مهم است",
+      detailValue: "جریان واضح، وضعیت‌های دقیق و رابطی که در استفاده واقعی دوام بیاورد.",
       proofOne: "طراحی واکنش‌گرا",
       proofTwo: "آماده LTR / RTL",
       proofThree: "هماهنگ با کاهش حرکت",
-      photoLabel: "جایگاه عکس شخصی",
     },
     featuredWork: {
       sectionLabel: "کار منتخب",
       eyebrow: "نمونه‌ای از پروژه واقعی",
-      title: "Innoverse جریان مسابقه را قابل مدیریت کرد.",
+      title: "Innoverse برای یک مسابقه برنامه‌نویسی واقعی ساخته شد.",
       summary:
-        "یک پلتفرم مسابقه برای ViaX Code Arena که برای مدیریت شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال‌ها، داوری و رفتار جدول رتبه‌بندی ساخته شد.",
+        "یک پلتفرم تیمی برای ViaX Code Arena که بخش‌های عملی مسابقه را پوشش می‌داد: شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال‌ها، داوری و رفتار جدول رتبه‌بندی.",
       resultLabel: "نتیجه مسابقه",
       resultValue: "مدال نقره",
       roleLabel: "نقش",
       roleValue: "عضو تیم و ارائه‌دهنده پروژه",
       scopeLabel: "گستره محصول",
-      scopeValue: "مدیریت، نگاه ضدتقلب، پردازش ارسال‌ها و بازخورد داوری با کمک هوش مصنوعی.",
-      mediaLabel: "قاب رسانه Innoverse",
-      mediaPlaceholder: "قاب آماده برای تصویر واقعی پروژه",
-      mediaNote: "بعدا تصویر واقعی Innoverse به همین قاب اضافه می‌شود.",
-      systemTitle: "پلتفرم چه چیزهایی را پوشش می‌داد",
+      scopeValue: "مدیریت، ملاحظات ضدتقلب، پردازش ارسال‌ها و بازخورد داوری با کمک هوش مصنوعی.",
+      mediaLabel: "تصاویر واقعی محصول Innoverse",
+      mediaPlaceholder: "نمای ورود، داشبورد، مسئله‌ها و جدول رتبه‌بندی ViaX Code Arena",
+      mediaNote: "تصاویر واقعی از پلتفرم مسابقه Innoverse.",
+      screens: [
+        {
+          label: "ورود",
+          alt:
+            "صفحه ورود ViaX Code Arena با فضای نمونه برای نقش‌های شرکت‌کننده، داور و مدیر.",
+        },
+        {
+          label: "داشبورد",
+          alt:
+            "داشبورد شرکت‌کننده در ViaX Code Arena با پیشرفت تیم، مسئله‌های حل‌شده، امتیاز، رتبه و ارسال‌های اخیر.",
+        },
+        {
+          label: "مسئله‌ها",
+          alt:
+            "نمای مسئله‌های ViaX Code Arena با فیلترها و کارت‌های چالش‌های برنامه‌نویسی حل‌شده.",
+        },
+        {
+          label: "رتبه‌بندی",
+          alt:
+            "جدول رتبه‌بندی ViaX Code Arena که تیم‌ها را بر اساس امتیاز پذیرفته‌شده، مسئله‌های حل‌شده، تلاش‌ها و زمان پذیرش مرتب می‌کند.",
+        },
+      ],
+      systemTitle: "محصول باید چه چیزهایی را پشتیبانی می‌کرد",
       systemItems: [
         "شرکت‌کننده‌ها و تیم‌ها",
         "مسئله‌ها و ارسال‌ها",
@@ -174,10 +219,10 @@ export const siteCopy: Record<Language, SiteCopy> = {
       ],
       stackLabel: "زمینه فنی در لایه دوم",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
-      actionLabel: "پیش‌نمایش داستان پروژه",
+      actionLabel: "نمایش یادداشت پروژه",
       actionDetail: "مسیر کیس‌استادی کامل هنوز وصل نشده است.",
       activeDetail:
-        "فضای داستان آینده رزرو شد: مسئله، نقش، تصمیم‌های تیم، جریان داوری و نتیجه نهایی.",
+        "کیس‌استادی کامل هنوز برای مرحله بعد مانده است. این ارائه فعلاً روی واقعیت‌های تاییدشده تمرکز دارد: گستره محصول، تیمی بودن پروژه، نقش در ارائه و نتیجه مدال نقره.",
     },
   },
 };
