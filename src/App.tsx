@@ -52,70 +52,49 @@ type HeaderProps = {
 function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-30 px-4 pt-4 sm:px-6 lg:px-8"
-      initial={{ opacity: 0, y: -16 }}
+      className="site-header fixed inset-x-0 top-0 z-30 px-4 pt-5 sm:px-6 lg:px-8"
+      initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
     >
-      <nav
-        className="mx-auto flex min-h-16 w-full max-w-7xl items-center justify-between gap-3 rounded-shell border border-subtle bg-surface/88 px-3 py-2 shadow-shell backdrop-blur-xl sm:px-4"
-        aria-label="Primary navigation"
-      >
+      <nav className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto] items-start gap-4 md:grid-cols-[1fr_auto_1fr]" aria-label="Primary navigation">
         <a
           href="#top"
-          className="group flex min-w-0 items-center gap-3 rounded-control px-2 py-2 text-start outline-none transition focus-visible:ring-2 focus-visible:ring-accent/70"
+          className="identity-mark group grid min-w-0 gap-1 py-1 text-start outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
         >
-          <span
-            className="grid size-10 shrink-0 place-items-center rounded-control border border-subtle bg-elevated text-sm font-semibold text-primary shadow-inner-soft transition group-hover:border-accent/45"
-            aria-hidden="true"
-          >
-            AK
-          </span>
-          <span className="min-w-0">
-            <span className="block truncate text-sm font-semibold tracking-normal">
+          <span className="flex items-center gap-3">
+            <span className="identity-rule" aria-hidden="true" />
+            <span className="truncate text-sm font-semibold text-primary">
               {copy.nav.identity}
             </span>
-            <span className="block truncate text-xs text-secondary">
-              {copy.nav.role}
-            </span>
           </span>
+          <span className="truncate ps-8 text-xs text-secondary">{copy.nav.role}</span>
         </a>
 
-        <div className="hidden items-center rounded-control border border-subtle bg-elevated/70 p-1 text-sm text-secondary md:flex">
+        <div className="nav-axis hidden items-center gap-6 text-sm text-secondary md:flex">
           <a
             href="#featured-work"
-            className="inline-flex min-h-10 items-center rounded-[0.65rem] px-3 text-primary outline-none transition hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/70"
+            className="nav-link outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
           >
             {copy.nav.work}
           </a>
-          <span className="px-3 py-2">{copy.nav.thinking}</span>
+          <span className="nav-note">{copy.nav.thinking}</span>
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex items-center justify-end gap-3">
           <button
             type="button"
-            className="relative inline-flex min-h-11 items-center rounded-control border border-subtle bg-elevated px-1 text-sm font-medium text-secondary outline-none transition hover:border-accent/45 hover:text-primary focus-visible:ring-2 focus-visible:ring-accent/70"
+            className="language-switch min-h-11 outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
             onClick={onLanguageChange}
             aria-label={copy.nav.languageLabel}
           >
-            <span
-              className={`rounded-[0.65rem] px-2.5 py-2 transition ${
-                language === "en" ? "bg-accent text-accent-ink" : ""
-              }`}
-            >
-              EN
-            </span>
-            <span
-              className={`rounded-[0.65rem] px-2.5 py-2 transition ${
-                language === "fa" ? "bg-accent text-accent-ink" : ""
-              }`}
-            >
-              فا
-            </span>
+            <span className={language === "en" ? "is-active" : ""}>EN</span>
+            <span aria-hidden="true">/</span>
+            <span className={language === "fa" ? "is-active" : ""}>فا</span>
           </button>
           <a
             href="#contact-intent"
-            className="hidden min-h-11 items-center rounded-control border border-accent/45 bg-accent px-4 text-sm font-semibold text-accent-ink outline-none transition hover:-translate-y-0.5 hover:bg-accent-strong focus-visible:ring-2 focus-visible:ring-accent/70 sm:inline-flex"
+            className="contact-link hidden min-h-11 items-center outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:inline-flex"
           >
             {copy.nav.contact}
           </a>
@@ -129,10 +108,12 @@ function Hero({ copy }: { copy: SiteCopy }) {
   const shouldReduceMotion = useReducedMotion();
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
-  const springX = useSpring(pointerX, { stiffness: 120, damping: 24, mass: 0.4 });
-  const springY = useSpring(pointerY, { stiffness: 120, damping: 24, mass: 0.4 });
-  const rotateY = useTransform(springX, [-1, 1], [-8, 8]);
-  const rotateX = useTransform(springY, [-1, 1], [7, -7]);
+  const springX = useSpring(pointerX, { stiffness: 118, damping: 27, mass: 0.38 });
+  const springY = useSpring(pointerY, { stiffness: 118, damping: 27, mass: 0.38 });
+  const fieldX = useTransform(springX, [-1, 1], [-14, 14]);
+  const fieldY = useTransform(springY, [-1, 1], [-10, 10]);
+  const rotateY = useTransform(springX, [-1, 1], [-4.5, 4.5]);
+  const rotateX = useTransform(springY, [-1, 1], [3.5, -3.5]);
 
   function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
     if (shouldReduceMotion) {
@@ -155,84 +136,74 @@ function Hero({ copy }: { copy: SiteCopy }) {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-dvh items-center px-4 pb-8 pt-24 sm:px-6 sm:pt-28 lg:px-8"
+      className="hero-section relative isolate flex min-h-dvh items-center px-4 pb-10 pt-28 sm:px-6 lg:px-8"
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
     >
-      <div className="hero-light" aria-hidden="true" />
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(22rem,0.8fr)] lg:gap-12">
+      <div className="workspace-grid" aria-hidden="true" />
+      <motion.div
+        className="workspace-line workspace-line-a"
+        style={shouldReduceMotion ? undefined : { x: fieldX }}
+        aria-hidden="true"
+      />
+      <motion.div
+        className="workspace-line workspace-line-b"
+        style={shouldReduceMotion ? undefined : { y: fieldY }}
+        aria-hidden="true"
+      />
+
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.62fr)] lg:gap-12">
         <motion.div
-          className="max-w-4xl text-start"
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
+          className="hero-copy relative max-w-5xl text-start"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-5 inline-flex min-h-10 items-center rounded-full border border-subtle bg-elevated/70 px-4 text-sm font-medium text-secondary">
-            {copy.hero.eyebrow}
-          </p>
-          <h1 className="max-w-5xl text-balance text-[clamp(2.55rem,5vw,4.85rem)] font-semibold leading-[0.97] tracking-normal text-primary">
-            <span className="block text-accent">{copy.hero.titleAccent}</span>
-            <span className="block">{copy.hero.title}</span>
+          <p className="hero-eyebrow">{copy.hero.eyebrow}</p>
+          <h1 className="hero-title">
+            <span>{copy.hero.titleAccent}</span>
+            {copy.hero.title}
           </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-secondary sm:text-xl sm:leading-9">
-            {copy.hero.body}
-          </p>
-          <div id="contact-intent" className="mt-8">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href="#contact-intent"
-                className="inline-flex min-h-12 items-center justify-center rounded-control bg-accent px-5 text-sm font-semibold text-accent-ink outline-none transition hover:-translate-y-0.5 hover:bg-accent-strong focus-visible:ring-2 focus-visible:ring-accent/70"
-              >
-                {copy.hero.primaryCta}
-              </a>
-              <a
-                href="#featured-work"
-                className="inline-flex min-h-12 items-center justify-center rounded-control border border-subtle bg-elevated px-5 text-sm font-semibold text-primary outline-none transition hover:-translate-y-0.5 hover:border-accent/45 focus-visible:ring-2 focus-visible:ring-accent/70"
-              >
-                {copy.hero.secondaryCta}
-              </a>
-            </div>
-            <p className="mt-3 max-w-md text-sm leading-6 text-muted">
-              {copy.hero.contactNote}
-            </p>
+          <p className="hero-body">{copy.hero.body}</p>
+
+          <div id="contact-intent" className="hero-actions">
+            <a href="#contact-intent" className="action-primary">
+              {copy.hero.primaryCta}
+            </a>
+            <a href="#featured-work" className="action-secondary">
+              {copy.hero.secondaryCta}
+            </a>
           </div>
+          <p className="hero-contact-note">{copy.hero.contactNote}</p>
         </motion.div>
 
-        <motion.div
-          className="hero-stage mx-auto w-full max-w-[30rem] lg:max-w-none"
-          style={
-            shouldReduceMotion
-              ? undefined
-              : {
-                  rotateX,
-                  rotateY,
-                }
-          }
-          initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
+        <motion.aside
+          className="hero-field"
+          style={shouldReduceMotion ? undefined : { rotateX, rotateY }}
+          initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.985 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.54, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           aria-label={copy.hero.statusValue}
         >
-          <div className="hero-frame">
-            <div className="hero-orbit" />
-            <div className="hero-photo-slot" aria-hidden="true">
-              <span>AK</span>
-            </div>
-            <div className="hero-panel hero-panel-primary">
-              <span>{copy.hero.statusLabel}</span>
-              <strong>{copy.hero.statusValue}</strong>
-            </div>
-            <div className="hero-panel hero-panel-secondary">
-              <span>{copy.hero.detailLabel}</span>
-              <strong>{copy.hero.detailValue}</strong>
-            </div>
-            <div id="first-proof" className="hero-proof-strip" tabIndex={-1}>
-              <span>{copy.hero.proofOne}</span>
-              <span>{copy.hero.proofTwo}</span>
-              <span>{copy.hero.proofThree}</span>
-            </div>
+          <div className="field-signature" aria-hidden="true">
+            AK
           </div>
-        </motion.div>
+          <div className="field-notes">
+            <p>
+              <span>{copy.hero.statusLabel}</span>
+              {copy.hero.statusValue}
+            </p>
+            <p>
+              <span>{copy.hero.detailLabel}</span>
+              {copy.hero.detailValue}
+            </p>
+          </div>
+          <div id="first-proof" className="field-proof-line" tabIndex={-1}>
+            <span>{copy.hero.proofOne}</span>
+            <span>{copy.hero.proofTwo}</span>
+            <span>{copy.hero.proofThree}</span>
+          </div>
+        </motion.aside>
       </div>
     </section>
   );
@@ -244,10 +215,10 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
-  const springX = useSpring(pointerX, { stiffness: 130, damping: 28, mass: 0.35 });
-  const springY = useSpring(pointerY, { stiffness: 130, damping: 28, mass: 0.35 });
-  const rotateY = useTransform(springX, [-1, 1], [-5, 5]);
-  const rotateX = useTransform(springY, [-1, 1], [4, -4]);
+  const springX = useSpring(pointerX, { stiffness: 130, damping: 30, mass: 0.35 });
+  const springY = useSpring(pointerY, { stiffness: 130, damping: 30, mass: 0.35 });
+  const rotateY = useTransform(springX, [-1, 1], [-3.5, 3.5]);
+  const rotateX = useTransform(springY, [-1, 1], [3, -3]);
 
   function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
     if (shouldReduceMotion) {
@@ -273,148 +244,108 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
       className="featured-work relative isolate px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
       aria-labelledby="featured-work-title"
     >
-      <div className="work-connector" aria-hidden="true" />
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="section-axis" aria-hidden="true" />
+      <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.76fr)_minmax(24rem,1fr)] lg:items-start">
         <motion.div
-          className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+          className="work-intro text-start"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-12% 0px" }}
-          transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="max-w-3xl text-start">
-            <p className="mb-3 text-sm font-semibold text-accent">
-              {copy.featuredWork.sectionLabel}
-            </p>
-            <h2
-              id="featured-work-title"
-              className="text-balance text-[clamp(2rem,4vw,4.2rem)] font-semibold leading-tight tracking-normal text-primary"
-            >
-              {copy.featuredWork.title}
-            </h2>
-          </div>
-          <div className="inline-flex w-fit items-center rounded-full border border-accent/35 bg-accent/12 px-4 py-2 text-sm font-semibold text-accent">
-            {copy.featuredWork.resultValue}
-          </div>
+          <p className="section-kicker">{copy.featuredWork.sectionLabel}</p>
+          <h2 id="featured-work-title">{copy.featuredWork.title}</h2>
+          <p>{copy.featuredWork.summary}</p>
+
+          <dl className="work-meta">
+            <div>
+              <dt>{copy.featuredWork.resultLabel}</dt>
+              <dd>{copy.featuredWork.resultValue}</dd>
+            </div>
+            <div>
+              <dt>{copy.featuredWork.roleLabel}</dt>
+              <dd>{copy.featuredWork.roleValue}</dd>
+            </div>
+          </dl>
+
+          <button
+            type="button"
+            className="story-toggle"
+            aria-expanded={isDetailOpen}
+            aria-controls={detailId}
+            onClick={() => setIsDetailOpen((current) => !current)}
+          >
+            {copy.featuredWork.actionLabel}
+          </button>
+          <motion.p
+            id={detailId}
+            className="story-note"
+            initial={false}
+            animate={{
+              opacity: isDetailOpen ? 1 : 0.74,
+              y: shouldReduceMotion || isDetailOpen ? 0 : -2,
+            }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {isDetailOpen
+              ? copy.featuredWork.activeDetail
+              : copy.featuredWork.actionDetail}
+          </motion.p>
         </motion.div>
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.72fr)] lg:items-stretch">
-          <motion.article
-            className="work-showcase"
-            onPointerMove={handlePointerMove}
-            onPointerLeave={resetPointer}
-            onFocus={() => setIsDetailOpen(true)}
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10% 0px" }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            aria-label={copy.featuredWork.mediaLabel}
+        <motion.article
+          className="artifact-stage"
+          onPointerMove={handlePointerMove}
+          onPointerLeave={resetPointer}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
+          aria-label={copy.featuredWork.mediaLabel}
+        >
+          <motion.div
+            className="artifact-plane"
+            style={shouldReduceMotion ? undefined : { rotateX, rotateY }}
           >
-            <motion.div
-              className="work-media"
-              style={
-                shouldReduceMotion
-                  ? undefined
-                  : {
-                      rotateX,
-                      rotateY,
-                    }
-              }
-            >
-              <div className="work-window-bar">
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="work-rank-surface">
-                <span>{copy.featuredWork.resultLabel}</span>
+            {/* Replace .artifact-map with an approved real Innoverse screenshot later. */}
+            <div className="artifact-map">
+              <div className="artifact-title-row">
+                <span>{copy.featuredWork.eyebrow}</span>
                 <strong>{copy.featuredWork.resultValue}</strong>
               </div>
-              <div className="work-flow-map" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-                <span />
+              <div className="flow-thread" aria-hidden="true" />
+              <ul className="artifact-nodes">
+                {copy.featuredWork.artifactItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="artifact-caption">
+                <span>{copy.featuredWork.artifactTitle}</span>
+                <p>{copy.featuredWork.artifactNote}</p>
               </div>
-              <div className="work-placeholder">
-                <span>{copy.featuredWork.mediaPlaceholder}</span>
-                <p>{copy.featuredWork.mediaNote}</p>
-              </div>
-            </motion.div>
-          </motion.article>
+            </div>
 
-          <motion.aside
-            className="work-detail"
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10% 0px" }}
-            transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="text-sm font-semibold text-accent">
-              {copy.featuredWork.eyebrow}
-            </p>
-            <p className="mt-4 text-lg leading-8 text-secondary">
-              {copy.featuredWork.summary}
-            </p>
+            <div className="artifact-annotation">
+              <span>{copy.featuredWork.scopeLabel}</span>
+              <p>{copy.featuredWork.scopeValue}</p>
+            </div>
 
-            <dl className="mt-7 grid gap-3">
-              <div>
-                <dt>{copy.featuredWork.roleLabel}</dt>
-                <dd>{copy.featuredWork.roleValue}</dd>
-              </div>
-              <div>
-                <dt>{copy.featuredWork.scopeLabel}</dt>
-                <dd>{copy.featuredWork.scopeValue}</dd>
-              </div>
-            </dl>
-
-            <div className="mt-7">
+            <div className="work-system">
               <h3>{copy.featuredWork.systemTitle}</h3>
-              <ul className="mt-3 grid gap-2">
+              <ul>
                 {copy.featuredWork.systemItems.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
 
-            <div className="mt-7">
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-muted">
-                {copy.featuredWork.stackLabel}
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {copy.featuredWork.stack.map((technology) => (
-                  <span key={technology} className="work-stack-pill">
-                    {technology}
-                  </span>
-                ))}
-              </div>
+            <div className="work-stack" aria-label={copy.featuredWork.stackLabel}>
+              {copy.featuredWork.stack.map((technology) => (
+                <span key={technology}>{technology}</span>
+              ))}
             </div>
-
-            <button
-              type="button"
-              className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-control border border-subtle bg-elevated px-5 text-sm font-semibold text-primary outline-none transition hover:-translate-y-0.5 hover:border-accent/45 focus-visible:ring-2 focus-visible:ring-accent/70 sm:w-auto"
-              aria-expanded={isDetailOpen}
-              aria-controls={detailId}
-              onClick={() => setIsDetailOpen((current) => !current)}
-            >
-              {copy.featuredWork.actionLabel}
-            </button>
-            <motion.p
-              id={detailId}
-              className="mt-3 text-sm leading-6 text-muted"
-              initial={false}
-              animate={{
-                opacity: isDetailOpen ? 1 : 0.72,
-                y: shouldReduceMotion || isDetailOpen ? 0 : -2,
-              }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {isDetailOpen
-                ? copy.featuredWork.activeDetail
-                : copy.featuredWork.actionDetail}
-            </motion.p>
-          </motion.aside>
-        </div>
+          </motion.div>
+        </motion.article>
       </div>
     </section>
   );
