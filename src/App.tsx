@@ -75,7 +75,7 @@ type HeaderProps = {
 function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-30 px-4 pt-4 sm:px-6 lg:px-8"
+      className="sticky inset-x-0 top-0 z-30 px-4 pt-3 sm:px-6 lg:px-8"
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -136,12 +136,6 @@ function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
               فا
             </span>
           </button>
-          <a
-            href="#contact-intent"
-            className="hidden min-h-11 items-center rounded-control border border-accent/45 bg-accent px-4 text-sm font-semibold text-accent-ink outline-none transition hover:-translate-y-0.5 hover:bg-accent-strong focus-visible:ring-2 focus-visible:ring-accent/70 sm:inline-flex"
-          >
-            {copy.nav.contact}
-          </a>
         </div>
       </nav>
     </motion.header>
@@ -178,7 +172,7 @@ function Hero({ copy }: { copy: SiteCopy }) {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-dvh items-center px-4 pb-8 pt-24 sm:px-6 sm:pt-28 lg:px-8"
+      className="relative isolate flex min-h-[calc(100dvh-5.5rem)] items-center px-4 pb-8 pt-6 sm:px-6 sm:pt-8 lg:px-8"
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
     >
@@ -200,16 +194,16 @@ function Hero({ copy }: { copy: SiteCopy }) {
           <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-secondary sm:text-xl sm:leading-9">
             {copy.hero.body}
           </p>
-          <div id="contact-intent" className="mt-8">
+          <div className="mt-8">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
-                href="#contact-intent"
+                href="#featured-work"
                 className="inline-flex min-h-12 items-center justify-center rounded-control bg-accent px-5 text-sm font-semibold text-accent-ink outline-none transition hover:-translate-y-0.5 hover:bg-accent-strong focus-visible:ring-2 focus-visible:ring-accent/70"
               >
                 {copy.hero.primaryCta}
               </a>
               <a
-                href="#featured-work"
+                href="#innoverse-screen"
                 className="inline-flex min-h-12 items-center justify-center rounded-control border border-subtle bg-elevated px-5 text-sm font-semibold text-primary outline-none transition hover:-translate-y-0.5 hover:border-accent/45 focus-visible:ring-2 focus-visible:ring-accent/70"
               >
                 {copy.hero.secondaryCta}
@@ -263,9 +257,7 @@ function Hero({ copy }: { copy: SiteCopy }) {
 
 function FeaturedWork({ copy }: { copy: SiteCopy }) {
   const shouldReduceMotion = useReducedMotion();
-  const detailId = useId();
   const screenshotLabelId = useId();
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
@@ -319,12 +311,9 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
               {copy.featuredWork.title}
             </h2>
           </div>
-          <div className="inline-flex w-fit items-center rounded-full border border-accent/35 bg-accent/12 px-4 py-2 text-sm font-semibold text-accent">
-            {copy.featuredWork.resultValue}
-          </div>
         </motion.div>
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.72fr)] lg:items-stretch">
+        <div className="grid gap-7 lg:grid-cols-[minmax(0,1.42fr)_minmax(18rem,0.58fr)] lg:items-start">
           <motion.article
             className="work-showcase"
             onPointerMove={handlePointerMove}
@@ -389,10 +378,6 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
                   ))}
                 </div>
               </div>
-              <div className="work-rank-surface">
-                <span>{copy.featuredWork.resultLabel}</span>
-                <strong>{copy.featuredWork.resultValue}</strong>
-              </div>
             </motion.div>
           </motion.article>
 
@@ -410,7 +395,11 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
               {copy.featuredWork.summary}
             </p>
 
-            <dl className="mt-7 grid gap-3">
+            <dl className="work-meta mt-8">
+              <div>
+                <dt>{copy.featuredWork.resultLabel}</dt>
+                <dd>{copy.featuredWork.resultValue}</dd>
+              </div>
               <div>
                 <dt>{copy.featuredWork.roleLabel}</dt>
                 <dd>{copy.featuredWork.roleValue}</dd>
@@ -434,38 +423,8 @@ function FeaturedWork({ copy }: { copy: SiteCopy }) {
               <p className="text-xs font-bold uppercase tracking-[0.08em] text-muted">
                 {copy.featuredWork.stackLabel}
               </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {copy.featuredWork.stack.map((technology) => (
-                  <span key={technology} className="work-stack-pill">
-                    {technology}
-                  </span>
-                ))}
-              </div>
+              <p className="work-stack-line mt-2">{copy.featuredWork.stack.join(" / ")}</p>
             </div>
-
-            <button
-              type="button"
-              className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-control border border-subtle bg-elevated px-5 text-sm font-semibold text-primary outline-none transition hover:-translate-y-0.5 hover:border-accent/45 focus-visible:ring-2 focus-visible:ring-accent/70 sm:w-auto"
-              aria-expanded={isDetailOpen}
-              aria-controls={detailId}
-              onClick={() => setIsDetailOpen((current) => !current)}
-            >
-              {copy.featuredWork.actionLabel}
-            </button>
-            <motion.p
-              id={detailId}
-              className="mt-3 text-sm leading-6 text-muted"
-              initial={false}
-              animate={{
-                opacity: isDetailOpen ? 1 : 0.72,
-                y: shouldReduceMotion || isDetailOpen ? 0 : -2,
-              }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {isDetailOpen
-                ? copy.featuredWork.activeDetail
-                : copy.featuredWork.actionDetail}
-            </motion.p>
           </motion.aside>
         </div>
       </div>

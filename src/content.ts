@@ -52,9 +52,6 @@ export type SiteCopy = {
     systemItems: string[];
     stackLabel: string;
     stack: string[];
-    actionLabel: string;
-    actionDetail: string;
-    activeDetail: string;
   };
 };
 
@@ -79,9 +76,9 @@ export const siteCopy: Record<Language, SiteCopy> = {
       titleAccent: "Artin Karimi",
       body:
         "I build interfaces with the less glamorous parts in mind too: responsive layouts, edge states, interaction details, and the polish that makes a product feel ready.",
-      primaryCta: "Start a conversation",
-      secondaryCta: "See Innoverse",
-      contactNote: "Contact links will connect once the final channels are approved.",
+      primaryCta: "See Innoverse",
+      secondaryCta: "View product states",
+      contactNote: "Focused on frontend roles and product-minded web work.",
       statusLabel: "Frontend focus",
       statusValue: "Product-grade frontend",
       detailLabel: "What I care about",
@@ -134,12 +131,8 @@ export const siteCopy: Record<Language, SiteCopy> = {
         "Judging and feedback",
         "Leaderboard behavior",
       ],
-      stackLabel: "Secondary technical context",
+      stackLabel: "Built with",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
-      actionLabel: "Show story note",
-      actionDetail: "The full case study route is not connected yet.",
-      activeDetail:
-        "The full case study is still deferred. This first presentation focuses on verified facts: the product scope, team context, presentation role, and Silver Medal result.",
     },
   },
   fa: {
@@ -162,9 +155,9 @@ export const siteCopy: Record<Language, SiteCopy> = {
       titleAccent: "آرتین کریمی",
       body:
         "من رابط‌هایی می‌سازم که فقط در اولین نگاه خوب نیستند؛ واکنش‌گرایی، وضعیت‌های مختلف، جزئیات تعامل و حس آماده‌بودن محصول هم برایم مهم است.",
-      primaryCta: "شروع گفتگو",
-      secondaryCta: "دیدن Innoverse",
-      contactNote: "لینک‌های ارتباطی بعد از تایید مسیرهای نهایی وصل می‌شوند.",
+      primaryCta: "دیدن Innoverse",
+      secondaryCta: "دیدن حالت‌های محصول",
+      contactNote: "متمرکز بر فرانت‌اند و تجربه‌های وب محصول‌محور.",
       statusLabel: "تمرکز فرانت‌اند",
       statusValue: "فرانت‌اند در سطح محصول",
       detailLabel: "چیزی که برایم مهم است",
@@ -217,12 +210,8 @@ export const siteCopy: Record<Language, SiteCopy> = {
         "داوری و بازخورد",
         "رفتار جدول رتبه‌بندی",
       ],
-      stackLabel: "زمینه فنی در لایه دوم",
+      stackLabel: "ساخته‌شده با",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
-      actionLabel: "نمایش یادداشت پروژه",
-      actionDetail: "مسیر کیس‌استادی کامل هنوز وصل نشده است.",
-      activeDetail:
-        "کیس‌استادی کامل هنوز برای مرحله بعد مانده است. این ارائه فعلاً روی واقعیت‌های تاییدشده تمرکز دارد: گستره محصول، تیمی بودن پروژه، نقش در ارائه و نتیجه مدال نقره.",
     },
   },
 };

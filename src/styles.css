@@ -40,6 +40,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-block-start: 6.5rem;
 }
 
 body {
@@ -247,6 +248,7 @@ a {
 }
 
 .featured-work {
+  scroll-margin-block-start: 6.5rem;
   background:
     linear-gradient(to bottom, rgb(13 15 16 / 0), var(--color-portfolio) 18%),
     radial-gradient(circle at 78% 12%, rgb(216 180 106 / 0.09), transparent 24rem);
@@ -268,7 +270,7 @@ a {
 }
 
 .work-showcase {
-  min-height: clamp(30rem, 55vw, 45rem);
+  min-height: clamp(30rem, 51vw, 43rem);
   border-radius: var(--radius-stage);
   perspective: 1200px;
   transform-style: preserve-3d;
@@ -344,7 +346,7 @@ a {
 
 .work-screenshot-shell {
   position: absolute;
-  inset-block-start: clamp(4.5rem, 8vw, 5.35rem);
+  inset-block-start: clamp(4.35rem, 7vw, 5.2rem);
   inset-inline: clamp(0.75rem, 2.5vw, 1.35rem);
   overflow: hidden;
   border: 1px solid rgb(244 239 231 / 0.16);
@@ -372,62 +374,24 @@ a {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3200 / 1591;
   object-fit: cover;
   object-position: center top;
 }
 
-.work-rank-surface {
-  position: absolute;
-  inset-block-end: clamp(1rem, 3vw, 1.5rem);
-  inset-inline-start: clamp(1rem, 3vw, 1.5rem);
-  z-index: 5;
-  display: grid;
-  gap: 0.35rem;
-  max-width: 14rem;
-  border: 1px solid rgb(216 180 106 / 0.3);
-  border-radius: 1.1rem;
-  background:
-    linear-gradient(135deg, rgb(216 180 106 / 0.18), rgb(21 23 24 / 0.9)),
-    rgb(21 23 24 / 0.9);
-  padding: 1rem;
-  box-shadow: 0 18px 54px rgb(0 0 0 / 0.28);
-  transform: translateZ(118px);
-}
-
-.work-rank-surface span {
-  color: var(--color-accent);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-[dir="rtl"] .work-rank-surface span {
-  letter-spacing: 0;
-}
-
-.work-rank-surface strong {
-  color: var(--color-primary);
-  font-size: clamp(1.2rem, 3vw, 1.75rem);
-  font-weight: 680;
-  line-height: 1;
-}
-
 .work-screen-selector {
   position: absolute;
-  inset-inline-end: clamp(1rem, 3vw, 1.5rem);
-  inset-block-end: clamp(1rem, 3vw, 1.5rem);
+  inset-inline: clamp(1rem, 3vw, 1.5rem);
+  inset-block-end: clamp(0.9rem, 2vw, 1.25rem);
   z-index: 6;
-  display: grid;
-  gap: 0.8rem;
-  max-width: min(25rem, calc(100% - 2rem));
-  border: 1px solid rgb(244 239 231 / 0.12);
-  border-radius: 1.1rem;
-  background: rgb(13 15 16 / 0.76);
-  padding: 0.75rem;
-  box-shadow: 0 18px 54px rgb(0 0 0 / 0.3);
-  transform: translateZ(116px);
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  border-block-start: 1px solid rgb(244 239 231 / 0.11);
+  background: linear-gradient(to top, rgb(13 15 16 / 0.92), rgb(13 15 16 / 0.58), transparent);
+  padding-block-start: 1rem;
+  transform: translateZ(96px);
   backdrop-filter: blur(14px);
   pointer-events: auto;
 }
@@ -445,17 +409,19 @@ a {
 .work-screen-selector div {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  justify-content: flex-end;
+  gap: 0.25rem;
 }
 
 .work-screen-selector button {
   position: relative;
   z-index: 2;
   min-height: 2.75rem;
-  border: 1px solid rgb(244 239 231 / 0.12);
-  border-radius: 999px;
-  background: rgb(244 239 231 / 0.055);
-  padding-inline: 0.8rem;
+  border: 0;
+  border-block-end: 2px solid transparent;
+  border-radius: 0.35rem 0.35rem 0 0;
+  background: transparent;
+  padding-inline: 0.7rem;
   color: var(--color-secondary);
   cursor: pointer;
   font: inherit;
@@ -471,7 +437,7 @@ a {
 
 .work-screen-selector button:hover,
 .work-screen-selector button:focus-visible {
-  border-color: rgb(216 180 106 / 0.42);
+  border-block-end-color: rgb(216 180 106 / 0.42);
   color: var(--color-primary);
   transform: translateY(-1px);
 }
@@ -481,24 +447,36 @@ a {
 }
 
 .work-screen-selector button.is-active {
-  border-color: rgb(216 180 106 / 0.54);
-  background: var(--color-accent);
-  color: var(--color-accent-ink);
+  border-block-end-color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .work-detail {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid var(--color-subtle);
-  border-radius: var(--radius-stage);
-  background:
-    linear-gradient(150deg, rgb(244 239 231 / 0.06), transparent 42%),
-    rgb(21 23 24 / 0.78);
-  padding: clamp(1.15rem, 3vw, 2rem);
-  box-shadow:
-    0 26px 70px rgb(0 0 0 / 0.25),
-    inset 0 1px 0 rgb(255 255 255 / 0.07);
+  border-inline-start: 1px solid rgb(244 239 231 / 0.13);
+  padding: clamp(0.25rem, 2vw, 1.4rem) 0 clamp(0.25rem, 2vw, 1.4rem) clamp(1rem, 3vw, 2rem);
+}
+
+[dir="rtl"] .work-detail {
+  border-inline-start: 0;
+  border-inline-end: 1px solid rgb(244 239 231 / 0.13);
+  padding: clamp(0.25rem, 2vw, 1.4rem) clamp(1rem, 3vw, 2rem) clamp(0.25rem, 2vw, 1.4rem) 0;
+}
+
+.work-meta {
+  display: grid;
+  gap: 0;
+  border-block: 1px solid rgb(244 239 231 / 0.12);
+}
+
+.work-meta div {
+  padding-block: 1rem;
+}
+
+.work-meta div + div {
+  border-block-start: 1px solid rgb(244 239 231 / 0.1);
 }
 
 .work-detail dt,
@@ -525,27 +503,18 @@ a {
 
 .work-detail li {
   position: relative;
-  min-height: 2.75rem;
-  border: 1px solid rgb(244 239 231 / 0.1);
-  border-radius: 0.85rem;
-  background: rgb(244 239 231 / 0.045);
-  padding: 0.72rem 0.9rem;
+  border-block-start: 1px solid rgb(244 239 231 / 0.1);
+  padding-block: 0.68rem;
   color: var(--color-secondary);
   font-size: 0.95rem;
   line-height: 1.35;
 }
 
-.work-stack-pill {
-  display: inline-flex;
-  min-height: 2.1rem;
-  align-items: center;
-  border: 1px solid rgb(244 239 231 / 0.11);
-  border-radius: 999px;
-  background: rgb(244 239 231 / 0.05);
-  padding-inline: 0.8rem;
+.work-stack-line {
   color: var(--color-secondary);
-  font-size: 0.86rem;
-  font-weight: 650;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.7;
 }
 
 @media (max-width: 1023px) {
@@ -555,6 +524,15 @@ a {
 
   .work-detail {
     justify-content: flex-start;
+    border-inline: 0;
+    border-block-start: 1px solid rgb(244 239 231 / 0.13);
+    padding: 1.25rem 0 0;
+  }
+
+  [dir="rtl"] .work-detail {
+    border-inline: 0;
+    border-block-start: 1px solid rgb(244 239 231 / 0.13);
+    padding: 1.25rem 0 0;
   }
 }
 
@@ -591,19 +569,18 @@ a {
     object-position: 44% top;
   }
 
-  .work-rank-surface {
-    inset-block-end: 0.65rem;
-    inset-inline-start: 0.65rem;
-    max-width: 9.5rem;
-    padding: 0.75rem;
-  }
-
   .work-screen-selector {
     inset-inline: 0.65rem;
-    inset-block-end: 6rem;
-    max-width: none;
+    inset-block-end: 0.65rem;
+    display: grid;
+    justify-content: stretch;
+    gap: 0.7rem;
     padding: 0.65rem;
     transform: translateZ(0);
+  }
+
+  .work-screen-selector div {
+    justify-content: flex-start;
   }
 
   .work-screen-selector p {
