@@ -43,9 +43,8 @@ export type SiteCopy = {
     scopeLabel: string;
     scopeValue: string;
     mediaLabel: string;
-    artifactTitle: string;
-    artifactNote: string;
-    artifactItems: string[];
+    mediaPlaceholder: string;
+    mediaNote: string;
     systemTitle: string;
     systemItems: string[];
     stackLabel: string;
@@ -72,42 +71,39 @@ export const siteCopy: Record<Language, SiteCopy> = {
       languageLabel: "Switch language",
     },
     hero: {
-      eyebrow: "Front-End Developer / real product interfaces",
-      title: "I build frontends that hold up in real use.",
+      eyebrow: "Front-End Developer",
+      title: "Frontend for real products, finished in the details.",
       titleAccent: "Artin Karimi",
       body:
-        "Not just the first clean screen. I care about the states, edges, and small interactions that make a product feel ready.",
+        "I build frontend experiences for real products, with attention to the states, details, and interactions that make an interface feel ready to use.",
       primaryCta: "Start a conversation",
-      secondaryCta: "Look at the work",
-      contactNote: "Direct contact links will be connected once the final channels are approved.",
-      statusLabel: "How the work should feel",
-      statusValue: "clear, tactile, finished",
-      detailLabel: "Built for",
-      detailValue: "people using real products, not portfolio screenshots",
-      proofOne: "Responsive from the start",
-      proofTwo: "English and Persian",
-      proofThree: "Motion that steps aside",
+      secondaryCta: "See the first proof",
+      contactNote: "Contact links will connect once the final channels are approved.",
+      statusLabel: "Current focus",
+      statusValue: "Product-grade frontend",
+      detailLabel: "Working style",
+      detailValue: "Clear first. Polished next. Shipped for real.",
+      proofOne: "Responsive by design",
+      proofTwo: "LTR / RTL ready",
+      proofThree: "Reduced motion respected",
       photoLabel: "Personal photo placeholder",
     },
     featuredWork: {
-      sectionLabel: "Work, as evidence",
-      eyebrow: "Innoverse / ViaX Code Arena",
-      title: "A competition platform with real moving parts.",
+      sectionLabel: "Featured work",
+      eyebrow: "Real project proof",
+      title: "Innoverse made competition flow manageable.",
       summary:
-        "Innoverse was built for ViaX Code Arena to handle the practical flow of a competition: participants, teams, problems, submissions, judging, and live rankings.",
+        "A competition platform built for ViaX Code Arena to manage participants, teams, problems, submissions, judging, and live leaderboard behavior.",
       resultLabel: "Competition result",
       resultValue: "Silver Medal",
       roleLabel: "Contribution",
       roleValue: "Team member and project presenter",
       scopeLabel: "Product scope",
-      scopeValue:
-        "Administration, anti-cheat considerations, submission processing, and AI-assisted judging feedback.",
-      mediaLabel: "Abstract Innoverse project artifact",
-      artifactTitle: "Competition system map",
-      artifactNote:
-        "An abstract view of teams, submissions, judging, and ranking moving through one product system.",
-      artifactItems: ["Teams", "Problems", "Submissions", "Judging", "Leaderboard"],
-      systemTitle: "What it had to coordinate",
+      scopeValue: "Administration, anti-cheat thinking, submission processing, and AI-assisted judging feedback.",
+      mediaLabel: "Innoverse media frame",
+      mediaPlaceholder: "Screenshot-ready product frame",
+      mediaNote: "Real Innoverse visuals can drop into this frame later.",
+      systemTitle: "What the platform handled",
       systemItems: [
         "Participants and teams",
         "Problems and submissions",
@@ -116,10 +112,10 @@ export const siteCopy: Record<Language, SiteCopy> = {
       ],
       stackLabel: "Secondary technical context",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
-      actionLabel: "Open the story outline",
-      actionDetail: "The full case study is intentionally not connected yet.",
+      actionLabel: "Preview project story",
+      actionDetail: "The full case study route is not connected yet.",
       activeDetail:
-        "Reserved for the real case study: product problem, team role, judging flow, technical decisions, and the shipped competition result.",
+        "Future story space reserved: problem, role, team decisions, judging flow, and shipped result.",
     },
   },
   fa: {
@@ -137,41 +133,39 @@ export const siteCopy: Record<Language, SiteCopy> = {
       languageLabel: "تغییر زبان",
     },
     hero: {
-      eyebrow: "توسعه‌دهنده فرانت‌اند / رابط‌های محصول واقعی",
-      title: "فرانت‌اندی می‌سازم که در استفاده واقعی دوام بیاورد.",
+      eyebrow: "توسعه‌دهنده فرانت‌اند",
+      title: "فرانت‌اند برای محصول واقعی، پرداخت‌شده در جزئیات.",
       titleAccent: "آرتین کریمی",
       body:
-        "فقط صفحه اولِ تمیز مهم نیست. من به وضعیت‌ها، لبه‌ها و تعامل‌های کوچکی توجه می‌کنم که محصول را آماده استفاده نشان می‌دهند.",
+        "من تجربه‌های فرانت‌اند برای محصولات واقعی می‌سازم؛ با توجه به وضعیت‌ها، جزئیات و تعامل‌هایی که باعث می‌شوند یک رابط آماده استفاده باشد.",
       primaryCta: "شروع گفتگو",
-      secondaryCta: "دیدن کار",
-      contactNote: "لینک‌های مستقیم ارتباط بعد از تایید مسیرهای نهایی وصل می‌شوند.",
-      statusLabel: "حس نهایی کار",
-      statusValue: "واضح، لمسی، کامل",
-      detailLabel: "ساخته‌شده برای",
-      detailValue: "آدم‌هایی که با محصول واقعی کار می‌کنند، نه فقط اسکرین‌شات رزومه",
-      proofOne: "واکنش‌گرا از ابتدا",
-      proofTwo: "انگلیسی و فارسی",
-      proofThree: "حرکت بدون مزاحمت",
+      secondaryCta: "دیدن اولین نشانه",
+      contactNote: "لینک‌های ارتباطی بعد از تایید مسیرهای نهایی وصل می‌شوند.",
+      statusLabel: "تمرکز فعلی",
+      statusValue: "فرانت‌اند در سطح محصول",
+      detailLabel: "سبک کار",
+      detailValue: "اول واضح. بعد پرداخت‌شده. در نهایت قابل استفاده.",
+      proofOne: "طراحی واکنش‌گرا",
+      proofTwo: "آماده LTR / RTL",
+      proofThree: "هماهنگ با کاهش حرکت",
       photoLabel: "جایگاه عکس شخصی",
     },
     featuredWork: {
-      sectionLabel: "کار، به‌عنوان مدرک",
-      eyebrow: "Innoverse / ViaX Code Arena",
-      title: "یک پلتفرم مسابقه با بخش‌های واقعی و درگیر.",
+      sectionLabel: "کار منتخب",
+      eyebrow: "نمونه‌ای از پروژه واقعی",
+      title: "Innoverse جریان مسابقه را قابل مدیریت کرد.",
       summary:
-        "Innoverse برای ViaX Code Arena ساخته شد تا جریان عملی یک مسابقه را پوشش دهد: شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال‌ها، داوری و رتبه‌بندی زنده.",
+        "یک پلتفرم مسابقه برای ViaX Code Arena که برای مدیریت شرکت‌کننده‌ها، تیم‌ها، مسئله‌ها، ارسال‌ها، داوری و رفتار جدول رتبه‌بندی ساخته شد.",
       resultLabel: "نتیجه مسابقه",
       resultValue: "مدال نقره",
       roleLabel: "نقش",
       roleValue: "عضو تیم و ارائه‌دهنده پروژه",
       scopeLabel: "گستره محصول",
       scopeValue: "مدیریت، نگاه ضدتقلب، پردازش ارسال‌ها و بازخورد داوری با کمک هوش مصنوعی.",
-      mediaLabel: "آرتیفکت انتزاعی پروژه Innoverse",
-      artifactTitle: "نقشه سیستم مسابقه",
-      artifactNote:
-        "برداشتی انتزاعی از حرکت تیم‌ها، ارسال‌ها، داوری و رتبه‌بندی در یک سیستم محصول.",
-      artifactItems: ["تیم‌ها", "مسئله‌ها", "ارسال‌ها", "داوری", "رتبه‌بندی"],
-      systemTitle: "چه چیزهایی را باید هماهنگ می‌کرد",
+      mediaLabel: "قاب رسانه Innoverse",
+      mediaPlaceholder: "قاب آماده برای تصویر واقعی پروژه",
+      mediaNote: "بعدا تصویر واقعی Innoverse به همین قاب اضافه می‌شود.",
+      systemTitle: "پلتفرم چه چیزهایی را پوشش می‌داد",
       systemItems: [
         "شرکت‌کننده‌ها و تیم‌ها",
         "مسئله‌ها و ارسال‌ها",
@@ -180,10 +174,10 @@ export const siteCopy: Record<Language, SiteCopy> = {
       ],
       stackLabel: "زمینه فنی در لایه دوم",
       stack: ["React", "Vite", "Tailwind", "PHP", "MySQL", "Docker", "Python"],
-      actionLabel: "باز کردن طرح داستان",
-      actionDetail: "کیس‌استادی کامل فعلا عمدا وصل نشده است.",
+      actionLabel: "پیش‌نمایش داستان پروژه",
+      actionDetail: "مسیر کیس‌استادی کامل هنوز وصل نشده است.",
       activeDetail:
-        "رزرو برای کیس‌استادی واقعی: مسئله محصول، نقش تیمی، جریان داوری، تصمیم‌های فنی و نتیجه مسابقه.",
+        "فضای داستان آینده رزرو شد: مسئله، نقش، تصمیم‌های تیم، جریان داوری و نتیجه نهایی.",
     },
   },
 };
