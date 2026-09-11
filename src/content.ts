@@ -89,6 +89,8 @@ export type SiteCopy = {
     eyebrow: string;
     title: string;
     body: string;
+    intentLine: string;
+    ctaLabel: string;
   };
 };
 
@@ -241,8 +243,11 @@ export const siteCopy: Record<Language, SiteCopy> = {
     },
     contact: {
       eyebrow: "Let's work together",
-      title: "Have something worth building?",
-      body: "If you're hiring, planning a web project, or want to collaborate, send me a message.",
+      title: "Hiring, building something, or looking for someone to collaborate with?",
+      body:
+        "I'm open to frontend roles, freelance projects, and collaborations with developers, designers, and people building something interesting.",
+      intentLine: "Job · Freelance · Collaboration",
+      ctaLabel: "Start a conversation",
     },
   },
   fa: {
@@ -262,13 +267,13 @@ export const siteCopy: Record<Language, SiteCopy> = {
     },
     hero: {
       eyebrow: "توسعه‌دهنده فرانت‌اند",
-      title: "من بخشی از محصول را می‌سازم که آدم‌ها می‌بینند، استفاده می‌کنند و به خاطر می‌سپارند.",
+      title: "من بخشی از محصول را می‌سازم که آدم‌ها می‌بینند، با آن کار می‌کنند و به خاطر می‌سپارند.",
       titleAccent: "آرتین کریمی",
       body:
         "با React و ابزارهای مدرن وب کار می‌کنم تا ایده‌ها به تجربه‌های وب صیقل‌خورده، واکنش‌گرا و آماده استفاده واقعی تبدیل شوند.",
       primaryCta: "دیدن کارها",
       secondaryCta: "همکاری با من",
-      contactNote: "آماده برای نقش‌های فرانت‌اند، پروژه‌های فریلنسری و همکاری‌های جدی.",
+      contactNote: "آماده برای فرصت‌های فرانت‌اند، پروژه‌های فریلنس و همکاری‌های جدی.",
       statusLabel: "نقش",
       statusValue: "توسعه‌دهنده فرانت‌اند",
       detailLabel: "تمرکز",
@@ -282,7 +287,7 @@ export const siteCopy: Record<Language, SiteCopy> = {
       eyebrow: "نمونه پروژه",
       title: "Innoverse",
       summary:
-        "یک پلتفرم مسابقه برنامه‌نویسی که همراه تیمم برای ViaX Code Arena ساختیم.",
+        "پلتفرم مسابقه برنامه‌نویسی که همراه تیمم برای ViaX Code Arena ساختیم.",
       resultLabel: "نتیجه",
       resultValue: "مدال نقره · ViaX Code Arena",
       roleLabel: "نقش",
@@ -329,7 +334,7 @@ export const siteCopy: Record<Language, SiteCopy> = {
       eyebrow: "همکاری",
       title: "وقتی چیزی می‌سازم، این‌ها برایم مهم‌اند.",
       intro:
-        "نمی‌خوام خودم رو با چند تا کلمه تکراری معرفی کنم. این‌ها چیزهایی هستند که وقتی اسمم پای یک پروژه است واقعاً برایم اهمیت دارند.",
+        "نمی‌خواهم خودم را با چند کلمه تکراری معرفی کنم. این‌ها چیزهایی هستند که وقتی اسمم پای یک پروژه است واقعاً برایم اهمیت دارند.",
       proofs: [
         {
           number: "01",
@@ -389,12 +394,15 @@ export const siteCopy: Record<Language, SiteCopy> = {
       body:
         "من توسعه‌دهنده فرانت‌اند هستم و تمرکزم روی React و پروژه‌های واقعی وب است. با ساختن یاد می‌گیرم، چیزهایی را که خراب می‌شوند درست می‌کنم و نتیجه را آن‌قدر جلو می‌برم تا آماده نمایش باشد.",
       secondaryBody:
-        "به نقش‌های فرانت‌اند، پروژه‌های فریلنسری و همکاری با آدم‌هایی علاقه دارم که چیزی ارزشمند برای ساختن دارند.",
+        "به فرصت‌های فرانت‌اند، پروژه‌های فریلنس و همکاری با آدم‌هایی علاقه دارم که چیزی ارزشمند برای ساختن دارند.",
     },
     contact: {
       eyebrow: "بیایید همکاری کنیم",
-      title: "چیزی برای ساختن دارید؟",
-      body: "اگر در حال استخدام هستید، پروژه وب دارید یا می‌خواهید همکاری کنیم، برایم پیام بفرستید.",
+      title: "برای استخدام، پروژه یا همکاری دنبال توسعه‌دهنده فرانت‌اند هستی؟",
+      body:
+        "برای فرصت‌های کاری، پروژه‌های فریلنس و همکاری با برنامه‌نویس‌ها، طراح‌ها و آدم‌هایی که دارند چیز جالبی می‌سازند، خوشحال می‌شوم صحبت کنیم.",
+      intentLine: "استخدام · فریلنس · همکاری",
+      ctaLabel: "بیا صحبت کنیم",
     },
   },
 };

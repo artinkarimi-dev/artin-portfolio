@@ -4,13 +4,16 @@ import {
   useMotionValue,
   useReducedMotion,
   useSpring,
+  useScroll,
   useTransform,
 } from "motion/react";
 import innoverseLogin from "./assets/innoverse/innoverse1.png";
 import innoverseDashboard from "./assets/innoverse/innoverse2.png";
 import innoverseProblems from "./assets/innoverse/innoverse3.png";
 import innoverseLeaderboard from "./assets/innoverse/innoverse4.png";
+import { HeroVisual } from "./components/HeroVisual";
 import { JazirehProject } from "./components/JazirehProject";
+import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
 import { siteCopy, type Language, type SiteCopy } from "./content";
 
 const languageStorageKey = "artin-portfolio-language";
@@ -39,7 +42,11 @@ function getInitialLanguage(): Language {
     return "en";
   }
 
-  return window.localStorage.getItem(languageStorageKey) === "fa" ? "fa" : "en";
+  try {
+    return window.localStorage.getItem(languageStorageKey) === "fa" ? "fa" : "en";
+  } catch {
+    return "en";
+  }
 }
 
 export default function App() {
@@ -49,25 +56,32 @@ export default function App() {
   useEffect(() => {
     document.documentElement.lang = copy.meta.lang;
     document.documentElement.dir = copy.meta.dir;
-    window.localStorage.setItem(languageStorageKey, language);
+
+    try {
+      window.localStorage.setItem(languageStorageKey, language);
+    } catch {
+      // Language still works for the session if storage is unavailable.
+    }
   }, [copy.meta.dir, copy.meta.lang, language]);
 
   return (
-    <div className="min-h-dvh overflow-x-clip bg-portfolio text-primary antialiased">
-      <SiteHeader
-        copy={copy}
-        language={language}
-        onLanguageChange={() => setLanguage(language === "en" ? "fa" : "en")}
-      />
-      <main>
-        <Hero copy={copy} />
-        <FeaturedWork copy={copy} />
-        <HowIWork copy={copy} />
-        <JazirehProject copy={copy} />
-        <About copy={copy} />
-        <Contact copy={copy} />
-      </main>
-    </div>
+    <SmoothScrollProvider>
+      <div className="min-h-dvh overflow-x-clip bg-portfolio text-primary antialiased">
+        <SiteHeader
+          copy={copy}
+          language={language}
+          onLanguageChange={() => setLanguage(language === "en" ? "fa" : "en")}
+        />
+        <main>
+          <Hero copy={copy} />
+          <FeaturedWork copy={copy} />
+          <HowIWork copy={copy} />
+          <JazirehProject copy={copy} />
+          <About copy={copy} />
+          <Contact copy={copy} />
+        </main>
+      </div>
+    </SmoothScrollProvider>
   );
 }
 
@@ -78,6 +92,8 @@ type HeaderProps = {
 };
 
 function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
+  const { scrollYProgress } = useScroll();
+
   return (
     <motion.header
       className="sticky inset-x-0 top-0 z-30 px-4 pt-3 sm:px-6 lg:px-8"
@@ -160,6 +176,20 @@ function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
           </button>
         </div>
       </nav>
+      <div
+        className="mobile-nav-strip mx-auto mt-2 grid w-full max-w-7xl grid-cols-4 rounded-control border border-subtle bg-surface/88 p-1 text-center text-xs font-semibold text-secondary shadow-shell backdrop-blur-xl md:hidden"
+        aria-label="Mobile navigation"
+      >
+        <a href="#featured-work">{copy.nav.work}</a>
+        <a href="#approach">{copy.nav.approach}</a>
+        <a href="#about">{copy.nav.about}</a>
+        <a href="#contact">{copy.nav.contact}</a>
+      </div>
+      <motion.span
+        className="scroll-progress"
+        style={{ scaleX: scrollYProgress }}
+        aria-hidden="true"
+      />
     </motion.header>
   );
 }
@@ -250,27 +280,8 @@ function Hero({ copy }: { copy: SiteCopy }) {
           initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-          aria-label={copy.hero.statusValue}
         >
-          <div className="hero-frame">
-            <div className="hero-orbit" />
-            <div className="hero-photo-slot" aria-hidden="true">
-              <span>AK</span>
-            </div>
-            <div className="hero-panel hero-panel-primary">
-              <span>{copy.hero.statusLabel}</span>
-              <strong>{copy.hero.statusValue}</strong>
-            </div>
-            <div className="hero-panel hero-panel-secondary">
-              <span>{copy.hero.detailLabel}</span>
-              <strong>{copy.hero.detailValue}</strong>
-            </div>
-            <div id="first-proof" className="hero-proof-strip" tabIndex={-1}>
-              <span>{copy.hero.proofOne}</span>
-              <span>{copy.hero.proofTwo}</span>
-              <span>{copy.hero.proofThree}</span>
-            </div>
-          </div>
+          <HeroVisual copy={copy} />
         </motion.div>
       </div>
     </section>
@@ -607,6 +618,12 @@ function Contact({ copy }: { copy: SiteCopy }) {
         <p className="mt-5 max-w-2xl text-pretty text-lg leading-8 text-secondary">
           {copy.contact.body}
         </p>
+        <div className="contact-action-row">
+          <p className="contact-intent">{copy.contact.intentLine}</p>
+          <span className="contact-cta" aria-label={copy.contact.ctaLabel}>
+            {copy.contact.ctaLabel}
+          </span>
+        </div>
       </motion.div>
     </section>
   );
