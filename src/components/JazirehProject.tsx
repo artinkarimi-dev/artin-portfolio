@@ -1,13 +1,41 @@
+import { useId, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import jazirehHome from "../assets/jazireh/jazireh1.png";
+import jazirehData from "../assets/jazireh/jazireh2.png";
+import jazirehRadar from "../assets/jazireh/jazireh4.png";
 import type { SiteCopy } from "../content";
 
 type JazirehProjectProps = {
   copy: SiteCopy;
 };
 
+const jazirehScreens = [
+  {
+    id: "home",
+    image: jazirehHome,
+    width: 3200,
+    height: 1579,
+  },
+  {
+    id: "data",
+    image: jazirehData,
+    width: 3200,
+    height: 1595,
+  },
+  {
+    id: "radar",
+    image: jazirehRadar,
+    width: 3200,
+    height: 1585,
+  },
+] as const;
+
 export function JazirehProject({ copy }: JazirehProjectProps) {
   const shouldReduceMotion = useReducedMotion();
+  const tablistLabelId = useId();
+  const [activeScreenIndex, setActiveScreenIndex] = useState(0);
+  const activeScreen = jazirehScreens[activeScreenIndex];
+  const activeCopy = copy.jazireh.screens[activeScreenIndex];
 
   return (
     <section
@@ -16,7 +44,7 @@ export function JazirehProject({ copy }: JazirehProjectProps) {
       aria-labelledby="jazireh-title"
     >
       <div className="jazireh-orbit" aria-hidden="true" />
-      <div className="mx-auto grid w-full max-w-7xl gap-9 lg:grid-cols-[minmax(0,0.56fr)_minmax(0,0.44fr)] lg:items-center lg:gap-14">
+      <div className="mx-auto grid w-full max-w-7xl gap-9 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,0.38fr)] lg:items-center lg:gap-14">
         <motion.article
           className="jazireh-media"
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
@@ -27,20 +55,41 @@ export function JazirehProject({ copy }: JazirehProjectProps) {
         >
           <div className="jazireh-media-bar">
             <span aria-hidden="true" />
-            <p>{copy.jazireh.mediaNote}</p>
+            <p>{activeCopy.note}</p>
           </div>
-          <motion.img
-            src={jazirehHome}
-            width="3200"
-            height="1579"
-            alt={copy.jazireh.mediaAlt}
-            decoding="async"
-            loading="lazy"
-            initial={{ scale: shouldReduceMotion ? 1 : 1.02 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          />
+          <div className="jazireh-browser-frame">
+            <motion.img
+              key={activeScreen.id}
+              src={activeScreen.image}
+              width={activeScreen.width}
+              height={activeScreen.height}
+              alt={activeCopy.alt}
+              decoding="async"
+              loading="lazy"
+              initial={{ opacity: 0.2, scale: shouldReduceMotion ? 1 : 1.01 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </div>
+          <div
+            className="jazireh-screen-selector"
+            role="tablist"
+            aria-labelledby={tablistLabelId}
+          >
+            <p id={tablistLabelId}>{copy.jazireh.mediaNote}</p>
+            {jazirehScreens.map((screen, index) => (
+              <button
+                key={screen.id}
+                type="button"
+                role="tab"
+                aria-selected={activeScreenIndex === index}
+                className={activeScreenIndex === index ? "is-active" : ""}
+                onClick={() => setActiveScreenIndex(index)}
+              >
+                {copy.jazireh.screens[index].label}
+              </button>
+            ))}
+          </div>
         </motion.article>
 
         <motion.div

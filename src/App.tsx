@@ -76,6 +76,7 @@ export default function App() {
           <Hero copy={copy} />
           <FeaturedWork copy={copy} />
           <HowIWork copy={copy} />
+          <Skills copy={copy} />
           <JazirehProject copy={copy} />
           <About copy={copy} />
           <Contact copy={copy} />
@@ -133,10 +134,10 @@ function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
             {copy.nav.work}
           </a>
           <a
-            href="#approach"
+            href="#skills"
             className="inline-flex min-h-10 items-center rounded-[0.65rem] px-3 outline-none transition hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/70"
           >
-            {copy.nav.approach}
+            {copy.nav.skills}
           </a>
           <a
             href="#about"
@@ -181,7 +182,7 @@ function SiteHeader({ copy, language, onLanguageChange }: HeaderProps) {
         aria-label="Mobile navigation"
       >
         <a href="#featured-work">{copy.nav.work}</a>
-        <a href="#approach">{copy.nav.approach}</a>
+        <a href="#skills">{copy.nav.skills}</a>
         <a href="#about">{copy.nav.about}</a>
         <a href="#contact">{copy.nav.contact}</a>
       </div>
@@ -558,6 +559,69 @@ function HowIWork({ copy }: { copy: SiteCopy }) {
   );
 }
 
+function Skills({ copy }: { copy: SiteCopy }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <section
+      id="skills"
+      className="skills-section relative isolate px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+      aria-labelledby="skills-title"
+    >
+      <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(18rem,0.42fr)_minmax(0,1fr)] lg:items-start lg:gap-14">
+        <motion.div
+          className="skills-intro text-start"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-12% 0px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="text-sm font-semibold text-accent">{copy.skills.eyebrow}</p>
+          <h2
+            id="skills-title"
+            className="mt-4 max-w-3xl text-balance text-[clamp(2rem,4vw,4.35rem)] font-semibold leading-[1.04] tracking-normal text-primary"
+          >
+            {copy.skills.title}
+          </h2>
+          <p className="mt-5 max-w-xl text-pretty text-lg leading-8 text-secondary">
+            {copy.skills.intro}
+          </p>
+          <p className="skills-backend-note mt-6">{copy.skills.backendNote}</p>
+        </motion.div>
+
+        <div className="capability-map" aria-label={copy.skills.eyebrow}>
+          {copy.skills.groups.map((group, index) => (
+            <motion.article
+              key={group.title}
+              className={`capability-group capability-group-${index + 1}`}
+              tabIndex={0}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : index * 0.07,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <div className="capability-heading">
+                <p>{group.label}</p>
+                <h3>{group.title}</h3>
+              </div>
+              <p className="capability-description">{group.description}</p>
+              <ul className="capability-list" aria-label={group.title}>
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function About({ copy }: { copy: SiteCopy }) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -568,13 +632,16 @@ function About({ copy }: { copy: SiteCopy }) {
       aria-labelledby="about-title"
     >
       <motion.div
-        className="about-shell mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.58fr)_minmax(0,0.42fr)] lg:items-end"
+        className="about-shell mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.52fr)_minmax(0,0.48fr)] lg:items-start"
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="text-start">
+          <div className="about-identity" aria-hidden="true">
+            <span>AK</span>
+          </div>
           <p className="text-sm font-semibold text-accent">{copy.about.eyebrow}</p>
           <h2
             id="about-title"
@@ -586,6 +653,18 @@ function About({ copy }: { copy: SiteCopy }) {
         <div className="about-copy">
           <p>{copy.about.body}</p>
           <p>{copy.about.secondaryBody}</p>
+          <p>{copy.about.tertiaryBody}</p>
+          <div className="professional-snapshot">
+            <p className="snapshot-label">{copy.about.snapshotLabel}</p>
+            <dl>
+              {copy.about.snapshot.map((item) => (
+                <div key={item.label}>
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </motion.div>
     </section>

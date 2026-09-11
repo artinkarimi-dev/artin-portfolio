@@ -10,7 +10,7 @@ export type SiteCopy = {
     identity: string;
     role: string;
     work: string;
-    approach: string;
+    skills: string;
     about: string;
     contact: string;
     languageLabel: string;
@@ -74,9 +74,26 @@ export type SiteCopy = {
     mediaLabel: string;
     mediaNote: string;
     mediaAlt: string;
+    screens: {
+      label: string;
+      note: string;
+      alt: string;
+    }[];
     details: {
       label: string;
       value: string;
+    }[];
+  };
+  skills: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    backendNote: string;
+    groups: {
+      label: string;
+      title: string;
+      description: string;
+      items: string[];
     }[];
   };
   about: {
@@ -84,6 +101,12 @@ export type SiteCopy = {
     title: string;
     body: string;
     secondaryBody: string;
+    tertiaryBody: string;
+    snapshotLabel: string;
+    snapshot: {
+      label: string;
+      value: string;
+    }[];
   };
   contact: {
     eyebrow: string;
@@ -105,7 +128,7 @@ export const siteCopy: Record<Language, SiteCopy> = {
       identity: "Artin Karimi",
       role: "Front-End Developer",
       work: "Work",
-      approach: "Approach",
+      skills: "Skills",
       about: "About",
       contact: "Contact",
       languageLabel: "Switch language",
@@ -218,6 +241,26 @@ export const siteCopy: Record<Language, SiteCopy> = {
       mediaNote: "Real Jazireh screen",
       mediaAlt:
         "Jazireh Astronomy homepage in Persian with astronomy content, navigation, and sky status cards.",
+      screens: [
+        {
+          label: "Home",
+          note: "Brand, content, and sky status",
+          alt:
+            "Jazireh Astronomy homepage with Persian astronomy navigation, hero copy, YouTube channel card, and sky status cards.",
+        },
+        {
+          label: "Live data",
+          note: "Solar, Earth, and earthquake data",
+          alt:
+            "Jazireh data section showing sun imagery, Earth from space, and recent earthquake information in Persian.",
+        },
+        {
+          label: "Radar",
+          note: "Interactive sky/radar view",
+          alt:
+            "Jazireh radar view showing astronomy objects and a guided radar interface in Persian.",
+        },
+      ],
       details: [
         {
           label: "Focus",
@@ -233,13 +276,72 @@ export const siteCopy: Record<Language, SiteCopy> = {
         },
       ],
     },
+    skills: {
+      eyebrow: "Capabilities",
+      title: "Frontend is my main lane. I can work beyond it when the product needs it.",
+      intro:
+        "Most of my work lives in React, UI, responsive behavior, and the details that make a web product feel finished.",
+      backendNote:
+        "Frontend is my main focus, but I’m comfortable working across the backend when a project needs it. I’ve worked with PHP, MySQL, APIs, WordPress, integrations, and deployment as part of real projects.",
+      groups: [
+        {
+          label: "Core",
+          title: "Frontend",
+          description:
+            "The browser-facing work: structure, interaction, responsive UI, and product polish.",
+          items: [
+            "React",
+            "TypeScript",
+            "JavaScript",
+            "HTML",
+            "CSS",
+            "Tailwind CSS",
+            "Vite",
+            "Responsive UI",
+            "Motion",
+            "API integration",
+          ],
+        },
+        {
+          label: "Hands-on project experience",
+          title: "Backend & data",
+          description:
+            "Practical backend work used to connect the frontend to real content, data, and project requirements.",
+          items: ["PHP", "MySQL", "REST APIs", "WordPress", "Frontend/backend integration"],
+        },
+        {
+          label: "Shipping",
+          title: "Workflow",
+          description:
+            "The practical layer around getting work beyond localhost and into something people can use.",
+          items: ["Git", "GitHub", "Docker", "Deployment", "Debugging", "Responsive testing"],
+        },
+      ],
+    },
     about: {
       eyebrow: "A little about me",
-      title: "I like building things that feel intentional.",
+      title: "I’m a frontend-focused developer who learns by building real things.",
       body:
-        "I'm a front-end developer focused on React and real web projects. I learn by building, fixing what breaks, and pushing the result until it feels ready to show.",
+        "Most of my work lives in React and the browser, but real projects rarely stop there. I’ve also worked with APIs, PHP, MySQL, WordPress, deployment, and the backend pieces needed to get the product working.",
       secondaryBody:
-        "I'm interested in frontend roles, freelance projects, and collaborations with people building something worth shipping.",
+        "I like understanding how the whole product fits together, even when frontend is the part I care about most.",
+      tertiaryBody:
+        "I’m interested in frontend roles, freelance projects, and collaborations with people building something worth shipping.",
+      snapshotLabel: "Professional snapshot",
+      snapshot: [
+        {
+          label: "Main focus",
+          value: "Frontend development with React and modern web tools",
+        },
+        {
+          label: "Project context",
+          value: "Team project work, real integrations, and project presentation",
+        },
+        {
+          label: "Open to",
+          value: "Employment, freelance work, and thoughtful collaboration",
+        },
+      ],
     },
     contact: {
       eyebrow: "Let's work together",
@@ -258,15 +360,15 @@ export const siteCopy: Record<Language, SiteCopy> = {
     },
     nav: {
       identity: "آرتین کریمی",
-      role: "توسعه‌دهنده فرانت‌اند",
+      role: "برنامه‌نویس فرانت‌اند",
       work: "کارها",
-      approach: "رویکرد",
+      skills: "مهارت‌ها",
       about: "درباره",
       contact: "ارتباط",
       languageLabel: "تغییر زبان",
     },
     hero: {
-      eyebrow: "توسعه‌دهنده فرانت‌اند",
+      eyebrow: "برنامه‌نویس فرانت‌اند",
       title: "من بخشی از محصول را می‌سازم که آدم‌ها می‌بینند، با آن کار می‌کنند و به خاطر می‌سپارند.",
       titleAccent: "آرتین کریمی",
       body:
@@ -275,7 +377,7 @@ export const siteCopy: Record<Language, SiteCopy> = {
       secondaryCta: "همکاری با من",
       contactNote: "آماده برای فرصت‌های فرانت‌اند، پروژه‌های فریلنس و همکاری‌های جدی.",
       statusLabel: "نقش",
-      statusValue: "توسعه‌دهنده فرانت‌اند",
+      statusValue: "برنامه‌نویس فرانت‌اند",
       detailLabel: "تمرکز",
       detailValue: "محصولات وب صیقل‌خورده که آدم‌ها بتوانند بفهمند و استفاده کنند.",
       proofOne: "کار واقعی",
@@ -366,13 +468,33 @@ export const siteCopy: Record<Language, SiteCopy> = {
       eyebrow: "یک ساخت دیگر",
       title: "Jazireh",
       intro:
-        "یک وب‌سایت نجومی که حول محتوا، داده واقعی و یک تجربه وب تعاملی ساخته شد.",
+        "یک وب‌سایت نجومی برای محتوا، داده‌های واقعی و تجربه‌ای تعاملی از دنیای فضا.",
       supporting:
         "من روی تجربه فرانت‌اند و اتصال بین سایت، WordPress و داده‌های بیرونی کار کردم تا یک ایده محتوایی سنگین به محصولی واکنش‌گرا و قابل استفاده تبدیل شود.",
       mediaLabel: "اسکرین‌شات وب‌سایت نجومی Jazireh",
       mediaNote: "اسکرین واقعی Jazireh",
       mediaAlt:
         "صفحه خانه Jazireh Astronomy به زبان فارسی با محتوای نجومی، ناوبری و کارت‌های وضعیت آسمان.",
+      screens: [
+        {
+          label: "خانه",
+          note: "برند، محتوا و وضعیت آسمان",
+          alt:
+            "صفحه خانه Jazireh Astronomy با ناوبری فارسی، متن اصلی، کارت کانال یوتیوب و وضعیت آسمان.",
+        },
+        {
+          label: "داده‌ها",
+          note: "خورشید، زمین و زمین‌لرزه‌ها",
+          alt:
+            "بخش داده‌های Jazireh با تصویر خورشید، زمین از فضا و اطلاعات زمین‌لرزه‌های اخیر.",
+        },
+        {
+          label: "رادار",
+          note: "نمای تعاملی آسمان و رادار",
+          alt:
+            "نمای رادار Jazireh با اجرام نجومی و رابط راهنمای رصدی به زبان فارسی.",
+        },
+      ],
       details: [
         {
           label: "تمرکز",
@@ -388,20 +510,79 @@ export const siteCopy: Record<Language, SiteCopy> = {
         },
       ],
     },
+    skills: {
+      eyebrow: "توانایی‌ها",
+      title: "تمرکز اصلی من فرانت‌اند است؛ ولی وقتی پروژه نیاز داشته باشد، همان‌جا متوقف نمی‌شوم.",
+      intro:
+        "بیشتر کارم در React، رابط کاربری، واکنش‌گرایی و جزئیاتی است که باعث می‌شود یک محصول وب آماده و قابل استفاده حس شود.",
+      backendNote:
+        "تمرکز اصلی من فرانت‌اند است، اما وقتی پروژه نیاز داشته باشد با بخش‌های بک‌اند هم کار می‌کنم. در پروژه‌های واقعی با PHP، MySQL، APIها، WordPress، اتصال فرانت و بک‌اند و دیپلوی هم کار کرده‌ام.",
+      groups: [
+        {
+          label: "اصلی",
+          title: "فرانت‌اند",
+          description:
+            "بخشی که کاربر می‌بیند و با آن کار می‌کند: ساختار، تعامل، واکنش‌گرایی و حس نهایی محصول.",
+          items: [
+            "React",
+            "TypeScript",
+            "JavaScript",
+            "HTML",
+            "CSS",
+            "Tailwind CSS",
+            "Vite",
+            "رابط واکنش‌گرا",
+            "Motion",
+            "اتصال به API",
+          ],
+        },
+        {
+          label: "تجربه عملی در پروژه",
+          title: "بک‌اند و داده",
+          description:
+            "دانش عملی برای وصل کردن فرانت‌اند به محتوا، داده و نیازهای واقعی پروژه.",
+          items: ["PHP", "MySQL", "REST APIs", "WordPress", "اتصال فرانت و بک‌اند"],
+        },
+        {
+          label: "تحویل کار",
+          title: "فرایند ساخت",
+          description:
+            "لایه عملی کار برای اینکه پروژه از لوکال‌هاست بیرون بیاید و واقعاً قابل استفاده شود.",
+          items: ["Git", "GitHub", "Docker", "دیپلوی", "دیباگ", "تست واکنش‌گرایی"],
+        },
+      ],
+    },
     about: {
       eyebrow: "کمی درباره من",
-      title: "دوست دارم چیزهایی بسازم که عمدی و فکرشده حس شوند.",
+      title: "من برنامه‌نویس فرانت‌اند هستم و بیشتر با ساختن پروژه‌های واقعی یاد می‌گیرم.",
       body:
-        "من توسعه‌دهنده فرانت‌اند هستم و تمرکزم روی React و پروژه‌های واقعی وب است. با ساختن یاد می‌گیرم، چیزهایی را که خراب می‌شوند درست می‌کنم و نتیجه را آن‌قدر جلو می‌برم تا آماده نمایش باشد.",
+        "بخش اصلی کارم React و فرانت‌اند است، ولی پروژه واقعی همیشه پشت مرورگر تمام نمی‌شود. برای همین با API، PHP، MySQL، WordPress، دیپلوی و بخش‌هایی از بک‌اند هم کار کرده‌ام.",
       secondaryBody:
+        "دوست دارم فقط یک صفحه را پیاده نکنم؛ بفهمم کل محصول چطور کنار هم کار می‌کند.",
+      tertiaryBody:
         "به فرصت‌های فرانت‌اند، پروژه‌های فریلنس و همکاری با آدم‌هایی علاقه دارم که چیزی ارزشمند برای ساختن دارند.",
+      snapshotLabel: "نمای حرفه‌ای کوتاه",
+      snapshot: [
+        {
+          label: "تمرکز اصلی",
+          value: "فرانت‌اند با React و ابزارهای مدرن وب",
+        },
+        {
+          label: "زمینه پروژه",
+          value: "کار تیمی، اتصال‌های واقعی و ارائه پروژه",
+        },
+        {
+          label: "آماده برای",
+          value: "فرصت کاری، پروژه فریلنس و همکاری جدی",
+        },
+      ],
     },
     contact: {
-      eyebrow: "بیایید همکاری کنیم",
+      eyebrow: "برای همکاری",
       title: "برای استخدام، پروژه یا همکاری دنبال توسعه‌دهنده فرانت‌اند هستی؟",
       body:
-        "برای فرصت‌های کاری، پروژه‌های فریلنس و همکاری با برنامه‌نویس‌ها، طراح‌ها و آدم‌هایی که دارند چیز جالبی می‌سازند، خوشحال می‌شوم صحبت کنیم.",
-      intentLine: "استخدام · فریلنس · همکاری",
+        "برای فرصت‌های کاری، پروژه‌های فریلنس و همکاری با برنامه‌نویس‌ها، طراح‌ها و تیم‌هایی که دارن چیز جالبی می‌سازن، خوشحال می‌شم صحبت کنیم.",
+      intentLine: "استخدام · پروژه فریلنس · همکاری",
       ctaLabel: "بیا صحبت کنیم",
     },
   },
